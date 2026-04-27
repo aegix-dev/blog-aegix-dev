@@ -51,11 +51,11 @@
 
         <div class="post-content reveal" style="animation-delay: 0.4s;">
             <p>As organizations scale their cloud infrastructure, managing encryption keys becomes a monumental challenge. If you use a single master key to encrypt all your data, a single compromise results in a total breach. Conversely, managing millions of individual keys is a maintenance nightmare. This is where <strong>Envelope Encryption</strong> provides an elegant, secure solution.</p>
-            <div class="social-links"><a href="https://github.com/orgs/aegix-dev/dashboard" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/company/107901904" target="_blank" rel="noopener noreferrer">LinkedIn</a></div>
+            
 
             <h2>What is Envelope Encryption?</h2>
             <p>Envelope encryption is the practice of encrypting your data with a unique <strong>Data Encryption Key (DEK)</strong> and then encrypting that DEK with a highly secure <strong>Key Encryption Key (KEK)</strong>. You store the encrypted DEK alongside your data, but the KEK remains safe in a Hardware Security Module (HSM) or a Key Management Service (KMS) like AWS KMS or Google Cloud KMS.</p>
-            <div class="social-links"><a href="https://github.com/orgs/aegix-dev/dashboard" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/company/107901904" target="_blank" rel="noopener noreferrer">LinkedIn</a></div>
+            
 
             <pre><code class="language-javascript">// Conceptualizing the Envelope Encryption Flow
 async function protectData(plainText, masterKeyId) {
@@ -74,7 +74,7 @@ async function protectData(plainText, masterKeyId) {
 
             <h2>Why Use It?</h2>
             <p>There are three primary reasons why envelope encryption is the industry standard for cloud-native security:</p>
-            <div class="social-links"><a href="https://github.com/orgs/aegix-dev/dashboard" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/company/107901904" target="_blank" rel="noopener noreferrer">LinkedIn</a></div>
+            
             <ul>
                 <li><strong>Performance:</strong> Symmetrical encryption (using DEKs) is incredibly fast for large datasets. You only use the "slower" KMS calls for the tiny DEK itself.</li>
                 <li><strong>Scalability:</strong> You can have billions of DEKs (one per user, per file, or per database row) without overwhelming your KMS storage.</li>
@@ -83,24 +83,24 @@ async function protectData(plainText, masterKeyId) {
 
             <h2>Key Rotation & Compliance</h2>
             <p>One of the most powerful features of envelope encryption is <strong>re-keying without re-encrypting</strong>. If your security policy requires rotating your master keys annually, you can simply decrypt the small DEK with the old KEK, and re-encrypt it with the new KEK. Your gigabytes of raw data never need to be processed or moved.</p>
-            <div class="social-links"><a href="https://github.com/orgs/aegix-dev/dashboard" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/company/107901904" target="_blank" rel="noopener noreferrer">LinkedIn</a></div>
+            
 
             <div class="pro-tip" style="background: rgba(191, 0, 255, 0.05); border-left: 4px solid var(--secondary); padding: 1.5rem; margin: 2rem 0; border-radius: 4px;">
                 <strong style="color: var(--secondary); display: block; margin-bottom: 0.5rem;">COMPLIANCE NOTE: FIPS 140-2</strong>
                 <p style="font-size: 0.95rem; margin-bottom: 0;">When implementing envelope encryption for regulated industries (Healthcare, Finance), ensure your KEK is stored in a FIPS 140-2 Level 3 certified HSM. Most modern cloud providers offer this as a default in their dedicated KMS tiers.</p>
-                <div class="social-links"><a href="https://github.com/orgs/aegix-dev/dashboard" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/company/107901904" target="_blank" rel="noopener noreferrer">LinkedIn</a></div>
+                
             </div>
 
             <p>By implementing envelope encryption, you achieve a "Defense in Depth" posture that balances extreme security with the performance required by modern distributed systems.</p>
-            <div class="social-links"><a href="https://github.com/orgs/aegix-dev/dashboard" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/company/107901904" target="_blank" rel="noopener noreferrer">LinkedIn</a></div>
+            
         </div>
     </main>
 
     <footer id="about">
         <div class="footer-content">
             <div class="logo" style="justify-content: center; margin-bottom: 1rem;">AEGIX</div>
-            <p>&copy; 2026 Aegix Security Inc. Built for developers, by developers.</p>
-            <div class="social-links"><a href="https://github.com/orgs/aegix-dev/dashboard" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/company/107901904" target="_blank" rel="noopener noreferrer">LinkedIn</a></div>
+            <p>&copy; 2026 Aegix Security Inc. Built for developers, by developers.</p><div class="social-links"><a href="https://github.com/orgs/aegix-dev/dashboard" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/company/107901904" target="_blank" rel="noopener noreferrer">LinkedIn</a></div>
+            
         </div>
     </footer>
 
