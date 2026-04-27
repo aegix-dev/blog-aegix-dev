@@ -6,7 +6,7 @@
         "tag": "Architecture",
         "date": "Apr 21, 2026",
         "readTime": "8 min read",
-        "image": "/Users/evanhelbig/.gemini/antigravity/brain/5840524b-bc67-4c3e-8cb0-a2611c24965d/zero_trust_hero_1777315326317.png",
+        "image": "assets/zero_trust_hero_1777315326317.png",
         "url": "posts/zero-trust.html"
     },
     {
@@ -16,28 +16,28 @@
         "tag": "Research",
         "date": "Apr 23, 2026",
         "readTime": "12 min read",
-        "image": "/Users/evanhelbig/.gemini/antigravity/brain/5840524b-bc67-4c3e-8cb0-a2611c24965d/supply_chain_security_1777315341624.png",
+        "image": "assets/supply_chain_security_1777315341624.png",
         "url": "posts/supply-chain.html"
     },
     {
-        "id": 3,
+        "id": "rust-future",
         "title": "Why Rust is the Future of Secure Systems",
         "excerpt": "Exploring memory safety, ownership, and how Rust eliminates entire classes of vulnerabilities.",
         "tag": "Languages",
         "date": "Apr 25, 2026",
-        "readTime": "5 min read",
-        "url": "posts/rust-future.html",
-        "image": "/Users/evanhelbig/.gemini/antigravity/brain/5840524b-bc67-4c3e-8cb0-a2611c24965d/rust_security_hero_1777315358276.png"
+        "readTime": "10 min read",
+        "image": "assets/rust_security_hero_1777315358276.png",
+        "url": "posts/rust-future.html"
     },
     {
-        "id": 4,
+        "id": "envelope-encryption",
         "title": "Scaling Trust: A Guide to Envelope Encryption",
         "excerpt": "Protect your data at scale by mastering the relationship between DEKs and KEKs.",
         "tag": "Cryptography",
         "date": "Apr 27, 2026",
         "readTime": "7 min read",
-        "url": "posts/envelope-encryption.html",
-        "image": "/Users/evanhelbig/.gemini/antigravity/brain/5840524b-bc67-4c3e-8cb0-a2611c24965d/envelope_encryption_hero_1777319572101.png"
+        "image": "assets/envelope_encryption_hero_1777319572101.png",
+        "url": "posts/envelope-encryption.html"
     },
     {
         "id": "ai-threats",
@@ -46,7 +46,7 @@
         "tag": "Research",
         "date": "Apr 19, 2026",
         "readTime": "15 min read",
-        "image": "/Users/evanhelbig/.gemini/antigravity/brain/5840524b-bc67-4c3e-8cb0-a2611c24965d/ai_threats_hero_v3_1777321659472.png",
+        "image": "assets/ai_threats_hero_v3_1777321659472.png",
         "url": "posts/ai-threats.html"
     }
 ]

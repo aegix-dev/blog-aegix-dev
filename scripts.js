@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "tag": "Architecture",
             "date": "Apr 21, 2026",
             "readTime": "8 min read",
-            "image": "/Users/evanhelbig/.gemini/antigravity/brain/5840524b-bc67-4c3e-8cb0-a2611c24965d/zero_trust_hero_1777315326317.png",
+            "image": "assets/zero_trust_hero_1777315326317.png",
             "url": "posts/zero-trust.html"
         },
         {
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "tag": "Research",
             "date": "Apr 23, 2026",
             "readTime": "12 min read",
-            "image": "/Users/evanhelbig/.gemini/antigravity/brain/5840524b-bc67-4c3e-8cb0-a2611c24965d/supply_chain_security_1777315341624.png",
+            "image": "assets/supply_chain_security_1777315341624.png",
             "url": "posts/supply-chain.html"
         },
         {
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "tag": "Languages",
             "date": "Apr 25, 2026",
             "readTime": "10 min read",
-            "image": "/Users/evanhelbig/.gemini/antigravity/brain/5840524b-bc67-4c3e-8cb0-a2611c24965d/rust_security_hero_1777315358276.png",
+            "image": "assets/rust_security_hero_1777315358276.png",
             "url": "posts/rust-future.html"
         },
         {
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "tag": "Cryptography",
             "date": "Apr 27, 2026",
             "readTime": "7 min read",
-            "image": "/Users/evanhelbig/.gemini/antigravity/brain/5840524b-bc67-4c3e-8cb0-a2611c24965d/envelope_encryption_hero_1777319572101.png",
+            "image": "assets/envelope_encryption_hero_1777319572101.png",
             "url": "posts/envelope-encryption.html"
         },
         {
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "tag": "Research",
             "date": "Apr 19, 2026",
             "readTime": "15 min read",
-            "image": "/Users/evanhelbig/.gemini/antigravity/brain/5840524b-bc67-4c3e-8cb0-a2611c24965d/ai_threats_hero_v3_1777321659472.png",
+            "image": "assets/ai_threats_hero_v3_1777321659472.png",
             "url": "posts/ai-threats.html"
         }
     ];
