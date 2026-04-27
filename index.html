@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&family=JetBrains+Mono:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <title>Aegix | Security-First Developer Blog</title>
+    <meta name="description" content="Insights, research, and guides on modern application security, zero-trust architectures, and developer productivity.">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://blog.aegix.dev/">
+    <meta property="og:title" content="Aegix | Security-First Developer Blog">
+    <meta property="og:description" content="Deep dives into appsec, zero-trust, and secure development workflows.">
+    <meta property="og:image" content="/Users/evanhelbig/.gemini/antigravity/brain/5840524b-bc67-4c3e-8cb0-a2611c24965d/zero_trust_hero_1777315326317.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://blog.aegix.dev/">
+    <meta property="twitter:title" content="Aegix | Security-First Developer Blog">
+    <meta property="twitter:description" content="Deep dives into appsec, zero-trust, and secure development workflows.">
+    <meta property="twitter:image" content="/Users/evanhelbig/.gemini/antigravity/brain/5840524b-bc67-4c3e-8cb0-a2611c24965d/zero_trust_hero_1777315326317.png">
+
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="bg-grid"></div>
+    <div id="reading-progress"></div>
+
+    <header>
+        <a href="index.html" class="logo">AEGIX</a>
+        <nav>
+            <div class="search-container">
+                <input type="text" id="post-search" placeholder="SCANNING FOR POSTS...">
+                <div class="search-glow"></div>
+            </div>
+            <ul>
+                <li><a href="#latest">Insights</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#newsletter" class="cta-button" style="padding: 0.5rem 1rem; font-size: 0.8rem;">Subscribe</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1 class="reveal">
+                <span class="decrypt" data-text="Secure the Code.">Secure the Code.</span><br>
+                <span class="decrypt" style="color: var(--primary);" data-text="Empower the Dev.">Empower the Dev.</span>
+            </h1>
+            <p class="reveal" style="animation-delay: 0.2s;">Deep dives into appsec, zero-trust architectures, and the future of secure development workflows.</p>
+            <a href="#latest" class="cta-button reveal" style="animation-delay: 0.4s;">Read Latest Posts</a>
+        </section>
+
+        <section id="latest" class="section">
+            <div class="section-header">
+                <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem;">
+                    <div>
+                        <h2>Latest Insights</h2>
+                        <p style="color: var(--text-dim);">The frontier of application security.</p>
+                    </div>
+                    <div id="tag-filters" class="tag-filters">
+                        <button class="tag-btn active" data-tag="all">All</button>
+                        <button class="tag-btn" data-tag="Architecture">Architecture</button>
+                        <button class="tag-btn" data-tag="Research">Research</button>
+                        <button class="tag-btn" data-tag="Languages">Languages</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="blog-grid" class="grid">
+                <!-- Posts will be injected here via JS -->
+                <div class="loading-shimmer">SYSTEM SCANNING...</div>
+            </div>
+
+            <div id="no-results" style="display: none; text-align: center; padding: 4rem 0;">
+                <h3 style="color: var(--secondary); font-family: 'JetBrains Mono', monospace;">ERROR 404: NO MATCHES FOUND</h3>
+                <p style="color: var(--text-dim);">Try adjusting your search parameters or clearing filters.</p>
+            </div>
+        </section>
+
+        <section id="newsletter" class="section" style="background: rgba(0, 0, 0, 0.3); border-top: 1px solid var(--glass-border);">
+            <div style="max-width: 600px; margin: 0 auto; text-align: center;">
+                <h2 style="margin-bottom: 1rem;">Join the Aegix Perimeter</h2>
+                <p style="color: var(--text-dim); margin-bottom: 2.5rem;">Get the latest security research and architecture guides delivered to your terminal.</p>
+                <form id="newsletter-form" class="newsletter-form">
+                    <input type="email" placeholder="ENTER YOUR EMAIL ADDRESS" required>
+                    <button type="submit" class="cta-button">Initialize Subscription</button>
+                    <div class="form-scan-line"></div>
+                </form>
+                <div id="form-status" style="margin-top: 1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--primary); display: none;">
+                    ACCESS GRANTED. CHECK YOUR INBOX.
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="terminal-trigger" title="Access Security Console" role="button" aria-label="Open Security Console">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+            <path fill="currentColor" d="M20,19H4c-1.1,0-2-0.9-2-2V7c0-1.1,0.9-2,2-2h16c1.1,0,2,0.9,2,2v10C22,18.1,21.1,19,20,19z M4,7v10h16V7H4z M14,15H6v-2h8V15z M18,11h-2v-2h2V11z" />
+        </svg>
+    </div>
+
+    <div id="terminal-window" class="glass" style="display: none;">
+        <div id="terminal-header">
+            <span>AEGIX SECURITY CONSOLE V3.0</span>
+            <button id="terminal-close" aria-label="Close Security Console">&times;</button>
+        </div>
+        <div id="terminal-output">
+            <div>[SYSTEM] INITIALIZING SECURE CONNECTION...</div>
+            <div>[SYSTEM] ENCRYPTION ACTIVE. TYPE 'HELP' FOR COMMANDS.</div>
+        </div>
+        <div id="terminal-input-line">
+            <span class="prompt">></span>
+            <input type="text" id="terminal-input" autofocus spellcheck="false" autocomplete="off">
+        </div>
+    </div>
+
+    <footer id="about">
+        <div class="footer-content">
+            <div class="logo" style="justify-content: center; margin-bottom: 1rem;">AEGIX</div>
+            <p>&copy; 2026 Aegix Security Inc. Built for developers, by developers.</p>
+            <div class="social-links">
+                <a href="https://github.com/orgs/aegix-dev/dashboard" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://www.linkedin.com/company/107901904" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+
+</html>

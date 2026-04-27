@@ -1,0 +1,52 @@
+[
+    {
+        "id": "zero-trust",
+        "title": "Beyond the Perimeter: Implementing Zero Trust",
+        "excerpt": "Why traditional network security is failing modern distributed teams and how to fix it.",
+        "tag": "Architecture",
+        "date": "Apr 21, 2026",
+        "readTime": "8 min read",
+        "image": "/Users/evanhelbig/.gemini/antigravity/brain/5840524b-bc67-4c3e-8cb0-a2611c24965d/zero_trust_hero_1777315326317.png",
+        "url": "posts/zero-trust.html"
+    },
+    {
+        "id": "supply-chain",
+        "title": "Hardening the Software Supply Chain",
+        "excerpt": "A deep dive into securing your CI/CD pipelines and managing third-party dependency risks.",
+        "tag": "Research",
+        "date": "Apr 23, 2026",
+        "readTime": "12 min read",
+        "image": "/Users/evanhelbig/.gemini/antigravity/brain/5840524b-bc67-4c3e-8cb0-a2611c24965d/supply_chain_security_1777315341624.png",
+        "url": "posts/supply-chain.html"
+    },
+    {
+        "id": 3,
+        "title": "Why Rust is the Future of Secure Systems",
+        "excerpt": "Exploring memory safety, ownership, and how Rust eliminates entire classes of vulnerabilities.",
+        "tag": "Languages",
+        "date": "Apr 25, 2026",
+        "readTime": "5 min read",
+        "url": "posts/rust-future.html",
+        "image": "/Users/evanhelbig/.gemini/antigravity/brain/5840524b-bc67-4c3e-8cb0-a2611c24965d/rust_security_hero_1777315358276.png"
+    },
+    {
+        "id": 4,
+        "title": "Scaling Trust: A Guide to Envelope Encryption",
+        "excerpt": "Protect your data at scale by mastering the relationship between DEKs and KEKs.",
+        "tag": "Cryptography",
+        "date": "Apr 27, 2026",
+        "readTime": "7 min read",
+        "url": "posts/envelope-encryption.html",
+        "image": "/Users/evanhelbig/.gemini/antigravity/brain/5840524b-bc67-4c3e-8cb0-a2611c24965d/envelope_encryption_hero_1777319572101.png"
+    },
+    {
+        "id": "ai-threats",
+        "title": "The Emerging Landscape of AI-Driven Threats",
+        "excerpt": "How large language models are being leveraged for automated phishing and vulnerability discovery.",
+        "tag": "Research",
+        "date": "Apr 19, 2026",
+        "readTime": "15 min read",
+        "image": "/Users/evanhelbig/.gemini/antigravity/brain/5840524b-bc67-4c3e-8cb0-a2611c24965d/ai_threats_hero_v3_1777321659472.png",
+        "url": "posts/ai-threats.html"
+    }
+]

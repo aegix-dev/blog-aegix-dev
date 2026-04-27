@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404: ACCESS DENIED | Aegix</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: left;
+            background: #000;
+        }
+
+        .error-container {
+            max-width: 600px;
+            padding: 2rem;
+            border: 1px solid var(--secondary);
+            background: rgba(191, 0, 255, 0.05);
+            box-shadow: 0 0 50px rgba(191, 0, 255, 0.2);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .terminal-header {
+            border-bottom: 1px solid var(--secondary);
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary);
+            font-weight: 800;
+        }
+
+        .error-code {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 1.2em;
+            background: var(--primary);
+            margin-left: 5px;
+            animation: blink 1s infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .back-home {
+            margin-top: 2rem;
+            display: inline-block;
+            color: var(--primary);
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-grid"></div>
+
+    <div class="error-container">
+        <div class="terminal-header">AEGIX SECURITY PROTOCOL</div>
+        <div class="error-code">404</div>
+        <p style="color: var(--text-main); margin-bottom: 1rem;">[CRITICAL] The requested resource was not found on this server.</p>
+        <div class="social-links"><a href="https://github.com/orgs/aegix-dev/dashboard" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/company/107901904" target="_blank" rel="noopener noreferrer">LinkedIn</a></div>
+        <p style="color: var(--text-dim); font-size: 0.9rem;">
+            > Initiating system recovery...<br>
+            > Trace ID: ${Math.random().toString(36).substr(2, 9).toUpperCase()}<br>
+            > Status: DISCONNECTED<span class="cursor"></span>
+        </p>
+        <div class="social-links"><a href="https://github.com/orgs/aegix-dev/dashboard" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/company/107901904" target="_blank" rel="noopener noreferrer">LinkedIn</a></div>
+        <a href="index.html" class="back-home">Return to Secure Perimeter</a>
+    </div>
+
+    <script>
+        // Simple random trace ID on load
+        document.querySelector('p').innerHTML = document.querySelector('p').innerHTML.replace('${Math.random().toString(36).substr(2, 9).toUpperCase()}', Math.random().toString(36).substr(2, 9).toUpperCase());
+    </script>
+</body>
+
+</html>

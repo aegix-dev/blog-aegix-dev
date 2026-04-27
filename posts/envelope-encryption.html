@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scaling Trust: A Guide to Envelope Encryption | Aegix Blog</title>
+    <meta name="description" content="Protect your data at scale by mastering the relationship between DEKs and KEKs.">
+    <meta property="og:title" content="Scaling Trust: A Guide to Envelope Encryption | Aegix Blog">
+    <meta property="og:image" content="/Users/evanhelbig/.gemini/antigravity/brain/5840524b-bc67-4c3e-8cb0-a2611c24965d/envelope_encryption_hero_1777319572101.png">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&family=JetBrains+Mono:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="reading-progress"></div>
+    <div class="bg-grid"></div>
+
+    <header>
+        <a href="../index.html" class="logo">AEGIX</a>
+        <nav>
+            <ul>
+                <li><a href="../index.html#latest">Insights</a></li>
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="../index.html#newsletter" class="cta-button" style="padding: 0.5rem 1rem; font-size: 0.8rem;">Subscribe</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="post-container">
+        <a href="../index.html" class="back-link">← Back to Blog</a>
+
+        <div class="post-meta">
+            <span>Apr 27, 2026</span>
+            <span>Cryptography</span>
+            <span>7 min read</span>
+        </div>
+
+        <h1 class="post-title reveal">
+            <span class="decrypt" data-text="Scaling Trust: A Guide to">Scaling Trust: A Guide to</span><br>
+            <span class="decrypt" style="color: var(--primary);" data-text="Envelope Encryption">Envelope Encryption</span>
+        </h1>
+
+        <div class="post-hero reveal" style="animation-delay: 0.2s;">
+            <img src="/Users/evanhelbig/.gemini/antigravity/brain/5840524b-bc67-4c3e-8cb0-a2611c24965d/envelope_encryption_hero_1777319572101.png" alt="Envelope Encryption Architecture">
+        </div>
+
+        <div class="post-content reveal" style="animation-delay: 0.4s;">
+            <p>As organizations scale their cloud infrastructure, managing encryption keys becomes a monumental challenge. If you use a single master key to encrypt all your data, a single compromise results in a total breach. Conversely, managing millions of individual keys is a maintenance nightmare. This is where <strong>Envelope Encryption</strong> provides an elegant, secure solution.</p>
+            <div class="social-links"><a href="https://github.com/orgs/aegix-dev/dashboard" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/company/107901904" target="_blank" rel="noopener noreferrer">LinkedIn</a></div>
+
+            <h2>What is Envelope Encryption?</h2>
+            <p>Envelope encryption is the practice of encrypting your data with a unique <strong>Data Encryption Key (DEK)</strong> and then encrypting that DEK with a highly secure <strong>Key Encryption Key (KEK)</strong>. You store the encrypted DEK alongside your data, but the KEK remains safe in a Hardware Security Module (HSM) or a Key Management Service (KMS) like AWS KMS or Google Cloud KMS.</p>
+            <div class="social-links"><a href="https://github.com/orgs/aegix-dev/dashboard" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/company/107901904" target="_blank" rel="noopener noreferrer">LinkedIn</a></div>
+
+            <pre><code class="language-javascript">// Conceptualizing the Envelope Encryption Flow
+async function protectData(plainText, masterKeyId) {
+    // 1. Generate a unique DEK from the KMS
+    const { dek, encryptedDek } = await kms.generateDataKey(masterKeyId);
+    
+    // 2. Encrypt the data locally using the DEK
+    const cipherText = aes.encrypt(plainText, dek);
+    
+    // 3. Wipe the raw DEK from memory immediately
+    zeroMemory(dek);
+    
+    // 4. Return the data bundled with the encrypted DEK (the 'envelope')
+    return { cipherText, encryptedDek };
+}</code></pre>
+
+            <h2>Why Use It?</h2>
+            <p>There are three primary reasons why envelope encryption is the industry standard for cloud-native security:</p>
+            <div class="social-links"><a href="https://github.com/orgs/aegix-dev/dashboard" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/company/107901904" target="_blank" rel="noopener noreferrer">LinkedIn</a></div>
+            <ul>
+                <li><strong>Performance:</strong> Symmetrical encryption (using DEKs) is incredibly fast for large datasets. You only use the "slower" KMS calls for the tiny DEK itself.</li>
+                <li><strong>Scalability:</strong> You can have billions of DEKs (one per user, per file, or per database row) without overwhelming your KMS storage.</li>
+                <li><strong>Compliance & Rotation:</strong> You can rotate the KEK (the master key) without having to re-encrypt all your terabytes of data. You only re-encrypt the DEKs.</li>
+            </ul>
+
+            <h2>Key Rotation & Compliance</h2>
+            <p>One of the most powerful features of envelope encryption is <strong>re-keying without re-encrypting</strong>. If your security policy requires rotating your master keys annually, you can simply decrypt the small DEK with the old KEK, and re-encrypt it with the new KEK. Your gigabytes of raw data never need to be processed or moved.</p>
+            <div class="social-links"><a href="https://github.com/orgs/aegix-dev/dashboard" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/company/107901904" target="_blank" rel="noopener noreferrer">LinkedIn</a></div>
+
+            <div class="pro-tip" style="background: rgba(191, 0, 255, 0.05); border-left: 4px solid var(--secondary); padding: 1.5rem; margin: 2rem 0; border-radius: 4px;">
+                <strong style="color: var(--secondary); display: block; margin-bottom: 0.5rem;">COMPLIANCE NOTE: FIPS 140-2</strong>
+                <p style="font-size: 0.95rem; margin-bottom: 0;">When implementing envelope encryption for regulated industries (Healthcare, Finance), ensure your KEK is stored in a FIPS 140-2 Level 3 certified HSM. Most modern cloud providers offer this as a default in their dedicated KMS tiers.</p>
+                <div class="social-links"><a href="https://github.com/orgs/aegix-dev/dashboard" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/company/107901904" target="_blank" rel="noopener noreferrer">LinkedIn</a></div>
+            </div>
+
+            <p>By implementing envelope encryption, you achieve a "Defense in Depth" posture that balances extreme security with the performance required by modern distributed systems.</p>
+            <div class="social-links"><a href="https://github.com/orgs/aegix-dev/dashboard" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/company/107901904" target="_blank" rel="noopener noreferrer">LinkedIn</a></div>
+        </div>
+    </main>
+
+    <footer id="about">
+        <div class="footer-content">
+            <div class="logo" style="justify-content: center; margin-bottom: 1rem;">AEGIX</div>
+            <p>&copy; 2026 Aegix Security Inc. Built for developers, by developers.</p>
+            <div class="social-links"><a href="https://github.com/orgs/aegix-dev/dashboard" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/company/107901904" target="_blank" rel="noopener noreferrer">LinkedIn</a></div>
+        </div>
+    </footer>
+
+    <script src="../scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+</body>
+
+</html>

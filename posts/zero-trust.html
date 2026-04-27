@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beyond the Perimeter: Implementing Zero Trust | Aegix Blog</title>
+    <meta name="description" content="Why traditional network security is failing modern distributed teams and how to fix it.">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Beyond the Perimeter: Implementing Zero Trust | Aegix Blog">
+    <meta property="og:description" content="Deep dive into Zero Trust architecture for modern teams.">
+    <meta property="og:image" content="/Users/evanhelbig/.gemini/antigravity/brain/5840524b-bc67-4c3e-8cb0-a2611c24965d/zero_trust_hero_1777315326317.png">
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+
+<body>
+    <div id="reading-progress"></div>
+    <div class="bg-grid"></div>
+
+    <header>
+        <a href="../index.html" class="logo">AEGIX</a>
+        <nav>
+            <ul>
+                <li><a href="../index.html#latest">Insights</a></li>
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="../index.html#newsletter" class="cta-button" style="padding: 0.5rem 1rem; font-size: 0.8rem;">Subscribe</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="post-container">
+        <a href="../index.html" class="back-link">← Back to Blog</a>
+
+        <div class="post-meta">
+            <span>Apr 21, 2026</span>
+            <span>Architecture</span>
+            <span>8 min read</span>
+        </div>
+
+        <h1 class="post-title reveal">
+            <span class="decrypt" data-text="Beyond the Perimeter:">Beyond the Perimeter:</span><br>
+            <span class="decrypt" style="color: var(--primary);" data-text="Implementing Zero Trust">Implementing Zero Trust</span>
+        </h1>
+
+        <div class="post-hero">
+            <img src="/Users/evanhelbig/.gemini/antigravity/brain/5840524b-bc67-4c3e-8cb0-a2611c24965d/zero_trust_hero_1777315326317.png" alt="Zero Trust">
+        </div>
+
+        <div class="post-content">
+            <p>The traditional "castle and moat" strategy of network security is dead. In an era where employees work from anywhere and services are distributed across multiple clouds, the concept of a "trusted internal network" is not only obsolete—it's dangerous.</p>
+            <div class="social-links"><a href="https://github.com/orgs/aegix-dev/dashboard" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/company/107901904" target="_blank" rel="noopener noreferrer">LinkedIn</a></div>
+
+            <h2>What is Zero Trust?</h2>
+            <p>Zero Trust is a security framework based on the realization that threats can exist both outside and inside the network. It operates on the principle of <code>never trust, always verify</code>. Every request for access to a resource must be authenticated, authorized, and continuously validated.</p>
+            <div class="social-links"><a href="https://github.com/orgs/aegix-dev/dashboard" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/company/107901904" target="_blank" rel="noopener noreferrer">LinkedIn</a></div>
+
+            <pre><code class="language-javascript">// Sample Zero Trust Authorization Logic
+async function authorizeRequest(request) {
+    const identity = await verifyIdentity(request.mfaToken);
+    const context = await getAccessContext(request.deviceIp);
+    
+    if (identity.isValid && context.isTrusted) {
+        return grantLeastPrivilegeAccess(identity.roles);
+    }
+    
+    throw new SecurityException("UNAUTHORIZED_ACCESS_BLOCK");
+}</code></pre>
+
+            <p>Unlike traditional models that grant broad access once a user is "inside," Zero Trust focuses on micro-segmentation and least-privilege access. This means even if one part of your infrastructure is compromised, the attacker is contained.</p>
+            <div class="social-links"><a href="https://github.com/orgs/aegix-dev/dashboard" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/company/107901904" target="_blank" rel="noopener noreferrer">LinkedIn</a></div>
+
+            <h2>The Identity-First Shift</h2>
+            <p>Traditional security relies on "Perimeter Identity" (IP addresses and VPNs). Zero Trust shifts this to <strong>Workload Identity</strong>. In a modern Kubernetes or multi-cloud environment, an IP address is ephemeral and untrustworthy. Instead, we use standards like <strong>SPIFFE (Secure Production Identity Framework for Everyone)</strong> to issue short-lived, verifiable identities to every service.</p>
+            <div class="social-links"><a href="https://github.com/orgs/aegix-dev/dashboard" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/company/107901904" target="_blank" rel="noopener noreferrer">LinkedIn</a></div>
+
+            <h2>Core Pillars of Implementation</h2>
+            <p>Transitioning to a Zero Trust architecture isn't just about installing new software; it's a fundamental shift in how you think about identity and access:</p>
+            <div class="social-links"><a href="https://github.com/orgs/aegix-dev/dashboard" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/company/107901904" target="_blank" rel="noopener noreferrer">LinkedIn</a></div>
+            <ul>
+                <li><strong>Identity-Centric Security:</strong> Moving away from IP addresses and towards cryptographic identities. Every service gets a SVID (SPIFFE Verifiable Identity Document).</li>
+                <li><strong>Policy as Code:</strong> Using tools like <strong>Open Policy Agent (OPA)</strong> to decouple authorization logic from your application code. This allows security teams to update access rules without a redeploy.</li>
+                <li><strong>Micro-segmentation:</strong> Breaking the network into small, isolated zones. If a single microservice is compromised, the "blast radius" is limited because it has zero trust from its neighbors.</li>
+            </ul>
+
+            <div class="pro-tip" style="background: rgba(0, 245, 255, 0.05); border-left: 4px solid var(--primary); padding: 1.5rem; margin: 2rem 0; border-radius: 4px;">
+                <strong style="color: var(--primary); display: block; margin-bottom: 0.5rem;">PRO-TIP: MTLS IS NOT ENOUGH</strong>
+                <p style="font-size: 0.95rem; margin-bottom: 0;">Encryption in transit (mTLS) protects against eavesdropping, but Zero Trust requires <strong>Continuous Authorization</strong>. Just because a service can connect doesn't mean it's authorized to perform a specific action on a specific resource.</p>
+                <div class="social-links"><a href="https://github.com/orgs/aegix-dev/dashboard" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/company/107901904" target="_blank" rel="noopener noreferrer">LinkedIn</a></div>
+            </div>
+        </div>
+    </main>
+
+    <footer id="about">
+        <div class="footer-content">
+            <div class="logo" style="justify-content: center; margin-bottom: 1rem;">AEGIX</div>
+            <p>&copy; 2026 Aegix Security Inc. Built for developers, by developers.</p>
+            <div class="social-links"><a href="https://github.com/orgs/aegix-dev/dashboard" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/company/107901904" target="_blank" rel="noopener noreferrer">LinkedIn</a></div>
+        </div>
+    </footer>
+
+    <script src="../scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+</body>
+
+</html>

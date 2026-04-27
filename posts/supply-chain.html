@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hardening the Software Supply Chain | Aegix Blog</title>
+    <meta name="description" content="A deep dive into securing CI/CD pipelines and managing third-party dependency risks.">
+    <meta property="og:title" content="Hardening the Software Supply Chain | Aegix Blog">
+    <meta property="og:image" content="/Users/evanhelbig/.gemini/antigravity/brain/5840524b-bc67-4c3e-8cb0-a2611c24965d/supply_chain_security_1777315341624.png">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&family=JetBrains+Mono:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="reading-progress"></div>
+    <div class="bg-grid"></div>
+
+    <header>
+        <a href="../index.html" class="logo">AEGIX</a>
+        <nav>
+            <ul>
+                <li><a href="../index.html#latest">Insights</a></li>
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="../index.html#newsletter" class="cta-button" style="padding: 0.5rem 1rem; font-size: 0.8rem;">Subscribe</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="post-container">
+        <a href="../index.html" class="back-link">← Back to Blog</a>
+
+        <div class="post-meta">
+            <span>Apr 23, 2026</span>
+            <span>Research</span>
+            <span>6 min read</span>
+        </div>
+
+        <h1 class="post-title reveal">
+            <span class="decrypt" data-text="Hardening the Software">Hardening the Software</span><br>
+            <span class="decrypt" style="color: var(--primary);" data-text="Supply Chain">Supply Chain</span>
+        </h1>
+
+        <div class="post-hero reveal" style="animation-delay: 0.2s;">
+            <img src="/Users/evanhelbig/.gemini/antigravity/brain/5840524b-bc67-4c3e-8cb0-a2611c24965d/supply_chain_security_1777315341624.png" alt="Supply Chain Security">
+        </div>
+
+        <div class="post-content reveal" style="animation-delay: 0.4s;">
+            <p>The modern software development lifecycle is more complex than ever. We no longer write 100% of our code; we assemble it from thousands of open-source building blocks. This reliance on third-party dependencies has created a massive new attack surface: the Software Supply Chain.</p>
+            <div class="social-links"><a href="https://github.com/orgs/aegix-dev/dashboard" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/company/107901904" target="_blank" rel="noopener noreferrer">LinkedIn</a></div>
+
+            <h2>The Anatomy of a Supply Chain Attack</h2>
+            <p>A supply chain attack doesn't target your production server directly. Instead, it compromises a tool or a library that you trust. Whether it's a malicious dependency update or a compromised build runner, the goal is to inject malicious code into your artifact before it ever reaches your infrastructure.</p>
+            <div class="social-links"><a href="https://github.com/orgs/aegix-dev/dashboard" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/company/107901904" target="_blank" rel="noopener noreferrer">LinkedIn</a></div>
+
+            <pre><code class="language-yaml"># Example: Verifying SBOMs in GitHub Actions
+name: Supply Chain Security
+on: [push]
+jobs:
+  secure-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Generate SBOM
+        run: syft . -o cyclonedx-json > sbom.json
+      - name: Attest Build
+        run: cosign attest --key cosign.key sbom.json</code></pre>
+
+            <h2>The SLSA Framework</h2>
+            <p>To defend against these threats, the industry is gravitating toward <strong>SLSA (Supply-chain Levels for Software Artifacts)</strong>. SLSA is a set of incremental security standards that help you reach "Build Integrity." By reaching SLSA Level 3, you ensure that your artifacts are built on non-falsifiable, ephemeral build runners with verifiable provenance.</p>
+            <div class="social-links"><a href="https://github.com/orgs/aegix-dev/dashboard" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/company/107901904" target="_blank" rel="noopener noreferrer">LinkedIn</a></div>
+
+            <pre><code class="language-bash"># Verifying artifact provenance with Cosign
+cosign verify-attestation --type slsaprovenance \
+  --certificate-identity "https://github.com/aegix/core/.github/workflows/release.yml" \
+  ghcr.io/aegix/core:latest</code></pre>
+
+            <h2>Core Principles of Hardening</h2>
+            <ul>
+                <li><strong>Immutable Infrastructure:</strong> Use ephemeral build environments that are destroyed after every run. This eliminates "poisoned" runners that persist across builds.</li>
+                <li><strong>Dependency Pinning:</strong> Never use "latest" tags. Pin every dependency by its unique SHA-256 hash. This prevents <em>dependency confusion</em> attacks where a malicious actor pushes a version-bumped package with the same name.</li>
+                <li><strong>SBOM Generation:</strong> Use tools like <strong>Syft</strong> or <strong>Trivy</strong> to generate a Software Bill of Materials. If a new vulnerability is discovered in an obscure library, you can instantly search your SBOMs to see if you're exposed.</li>
+            </ul>
+
+            <p>By treating your build pipeline as a production environment, you can ensure that the code you ship is exactly the code you intended to write.</p>
+            <div class="social-links"><a href="https://github.com/orgs/aegix-dev/dashboard" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/company/107901904" target="_blank" rel="noopener noreferrer">LinkedIn</a></div>
+        </div>
+        </article>
+    </main>
+
+    <footer id="about">
+        <div style="display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
+            <p style="color: var(--text-dim);">&copy; 2026 AEGIX SECURITY. ALL RIGHTS RESERVED.</p>
+            <div class="social-links"><a href="https://github.com/orgs/aegix-dev/dashboard" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.linkedin.com/company/107901904" target="_blank" rel="noopener noreferrer">LinkedIn</a></div>
+            <div style="display: flex; gap: 2rem;">
+                <a href="https://github.com/orgs/aegix-dev/dashboard" target="_blank" rel="noopener noreferrer" style="color: var(--text-dim); text-decoration: none;">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js"></script>
+</body>
+
+</html>
