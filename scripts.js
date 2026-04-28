@@ -317,6 +317,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const termInput = document.getElementById('terminal-input');
     const termOutput = document.getElementById('terminal-output');
 
+    // Wasm Engine Bridge (Simulated Fallback)
+    const wasmProxy = {
+        genkey: () => {
+            const key = Array.from({
+                length: 32
+            }, () => Math.floor(Math.random() * 16).toString(16)).join('');
+            return `<span style="color: var(--primary)">[WASM_ENGINE]</span> Generated 256-bit AES Key: 0x${key}`;
+        },
+        verify: (token) => {
+            if (!token) return 'ERROR: Usage "verify <token>"';
+            const valid = token.startsWith('eyJ') && token.includes('.');
+            return valid ?
+                `<span style="color: var(--primary)">[WASM_ENGINE]</span> JWT Signature Matched. Principal: aegix-admin.` :
+                `<span style="color: var(--primary)">[WASM_ENGINE]</span> [INVALID] Signature Mismatch.`;
+        },
+        encrypt: (data) => {
+            if (!data) return 'ERROR: Usage "encrypt <data>"';
+            const encrypted = data.split('').map(c => String.fromCharCode(c.charCodeAt(0) ^ 42)).join('');
+            return `<span style="color: var(--primary)">[WASM_ENGINE]</span> Encrypted Payload (XOR-42): ${encrypted}`;
+        }
+    };
+
     if (termTrigger) {
         termTrigger.addEventListener('click', () => {
             termWindow.style.display = 'flex';
@@ -352,26 +374,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
         switch (cmd) {
             case 'help':
-                response.innerHTML = 'AVAILABLE COMMANDS: HELP, WHOAMI, LS, CLEAR, CAT [FILE]';
+                response.innerHTML = `
+                    <span style="color: var(--primary)">AVAILABLE COMMANDS:</span><br>
+                    - <span style="color: var(--primary)">LS</span>: List latest entries<br>
+                    - <span style="color: var(--primary)">WHOAMI</span>: Session identity<br>
+                    - <span style="color: var(--primary)">GENKEY</span>: [WASM] Generate AES-256 Key<br>
+                    - <span style="color: var(--primary)">VERIFY &lt;token&gt;</span>: [WASM] Validate JWT<br>
+                    - <span style="color: var(--primary)">ENCRYPT &lt;msg&gt;</span>: [WASM] XOR Encryption<br>
+                    - <span style="color: var(--secondary)">CAT SECRET.TXT</span>: Access classified data
+                `;
                 break;
             case 'whoami':
-                response.innerHTML = 'GUEST_USER // ACCESS_LEVEL: MINIMAL';
+                response.innerHTML = 'GUEST_USER // SESSION: AEGIX_PERIMETER_SECURE';
                 break;
             case 'ls':
-                response.innerHTML = 'index.html, styles.css, scripts.js, secret.txt';
+                response.innerHTML = allPosts.map(p => `[${p.date}] ${p.title}`).join('<br>');
+                break;
+            case 'genkey':
+                response.innerHTML = wasmProxy.genkey();
                 break;
             case 'clear':
                 termOutput.innerHTML = '';
                 return;
             case 'cat secret.txt':
-                response.innerHTML = '<span style="color: var(--secondary)">ACCESS GRANTED:</span> "The best security is the one that empowers the developer, not blocks them." // USE CODE \'AEGIX_HACKER\' FOR 20% OFF.';
+                response.innerHTML = `
+                    <span style="color: var(--secondary)">[CLASSIFIED] DECRYPTION SUCCESSFUL:</span><br>
+                    Aegix mission: Secure the code, empower the dev. 
+                    Established 2024. Mesh-scale security reached 2026.
+                `;
                 break;
             default:
-                if (cmd.startsWith('cat ')) {
-                    response.innerHTML = `ERROR: ${cmd.split(' ')[1]} IS ENCRYPTED OR NOT FOUND.`;
+                if (cmd.startsWith('verify ')) {
+                    response.innerHTML = wasmProxy.verify(cmd.split(' ')[1]);
+                } else if (cmd.startsWith('encrypt ')) {
+                    response.innerHTML = wasmProxy.encrypt(cmd.split(' ')[1]);
+                } else if (cmd.startsWith('cat ')) {
+                    response.innerHTML = 'ERROR: Permission Denied. Access restricted to level 4 agents.';
                 } else {
-                    response.innerHTML = `COMMAND NOT RECOGNIZED: ${cmd}`;
+                    response.innerHTML = `COMMAND NOT FOUND: ${cmd}. TYPE 'HELP' FOR ASSISTANCE.`;
                 }
+                break;
         }
 
         termOutput.appendChild(response);

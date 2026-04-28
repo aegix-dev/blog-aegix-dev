@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+    <title>Aegix Security Blog</title>
+    <link>https://blog.aegix.dev</link>
+    <description>Insights, research, and guides on modern application security, zero-trust architectures, and developer productivity.</description>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 28 Apr 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://blog.aegix.dev/rss.xml" rel="self" type="application/rss+xml" />
+
+    <item>
+        <title>Env Vars vs. KMS: The Secret Management Paradox</title>
+        <link>https://blog.aegix.dev/posts/secrets-management.html</link>
+        <guid>https://blog.aegix.dev/posts/secrets-management.html</guid>
+        <pubDate>Tue, 28 Apr 2026 00:00:00 +0000</pubDate>
+        <description>A deep dive into the security tradeoffs between environment variables and dedicated Key Management Systems in modern CI/CD pipelines.</description>
+    </item>
+
+    <item>
+        <title>Scaling Trust: A Guide to Envelope Encryption</title>
+        <link>https://blog.aegix.dev/posts/envelope-encryption.html</link>
+        <guid>https://blog.aegix.dev/posts/envelope-encryption.html</guid>
+        <pubDate>Sun, 26 Apr 2026 00:00:00 +0000</pubDate>
+        <description>Protect your data at scale by mastering the relationship between DEKs and KEKs.</description>
+    </item>
+
+    <item>
+        <title>Why Rust is the Future of Secure Systems</title>
+        <link>https://blog.aegix.dev/posts/rust-future.html</link>
+        <guid>https://blog.aegix.dev/posts/rust-future.html</guid>
+        <pubDate>Sat, 25 Apr 2026 00:00:00 +0000</pubDate>
+        <description>Exploring memory safety, ownership, and how Rust eliminates entire classes of vulnerabilities.</description>
+    </item>
+
+    <item>
+        <title>Hardening the Software Supply Chain</title>
+        <link>https://blog.aegix.dev/posts/supply-chain.html</link>
+        <guid>https://blog.aegix.dev/posts/supply-chain.html</guid>
+        <pubDate>Thu, 23 Apr 2026 00:00:00 +0000</pubDate>
+        <description>A deep dive into securing your CI/CD pipelines and managing third-party dependency risks.</description>
+    </item>
+
+    <item>
+        <title>Beyond the Perimeter: Implementing Zero Trust</title>
+        <link>https://blog.aegix.dev/posts/zero-trust.html</link>
+        <guid>https://blog.aegix.dev/posts/zero-trust.html</guid>
+        <pubDate>Tue, 21 Apr 2026 00:00:00 +0000</pubDate>
+        <description>Why traditional network security is failing modern distributed teams and how to fix it.</description>
+    </item>
+
+    <item>
+        <title>The Emerging Landscape of AI-Driven Threats</title>
+        <link>https://blog.aegix.dev/posts/ai-threats.html</link>
+        <guid>https://blog.aegix.dev/posts/ai-threats.html</guid>
+        <pubDate>Sun, 19 Apr 2026 00:00:00 +0000</pubDate>
+        <description>How large language models are being leveraged for automated phishing and vulnerability discovery.</description>
+    </item>
+
+</channel>
+</rss>

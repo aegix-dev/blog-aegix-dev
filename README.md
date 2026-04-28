@@ -32,14 +32,16 @@ Live at: [blog.aegix.dev](https://blog.aegix.dev)
 └── robots.txt          # SEO crawler rules
 ```
 
-## 🚢 Deployment
+## 🚢 Deployment & Content Creation
 
 The site is configured to deploy automatically via GitHub Pages.
 
-1.  **Local Changes**: Make edits to HTML, CSS, or JS files.
-2.  **Commit**: `git add . && git commit -m "feat: add new security post"`
-3.  **Push**: `git push origin main`
-4.  **Live**: The GitHub Action will take ~30 seconds to rebuild and deploy the site to `blog.aegix.dev`.
+- **Creating Content**: For a detailed walkthrough on writing new posts and maintaining design standards, see [GUIDE.md](./GUIDE.md).
+- **Deployment**:
+    1.  Make edits and verify locally.
+    2.  `git add . && git commit -m "feat: add new post"`
+    3.  `git push origin main`
+- **Live**: Rebuilds automatically at `blog.aegix.dev` via GitHub Actions.
 
 ---
 *Built for developers, by developers. © 2026 Aegix Security Inc.*
