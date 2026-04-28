@@ -31,8 +31,30 @@ impl AegixEngine {
                     self.mock_encrypt(parts[1])
                 }
             },
+            "evaluate" => {
+                if parts.len() < 2 {
+                    "ERROR: Usage 'evaluate <policy_json>'".to_string()
+                } else {
+                    self.evaluate_policy(parts[1])
+                }
+            },
             _ => "UNKNOWN_COMMAND: Redirecting to host engine...".to_string(),
         }
+    }
+
+    fn evaluate_policy(&self, policy_json: &str) -> String {
+        if policy_json.contains("\"trust_score\":") {
+            let score_part = policy_json.split("\"trust_score\":").collect::<Vec<&str>>()[1];
+            let score_str = score_part.trim().split(',').collect::<Vec<&str>>()[0].trim().split('}').collect::<Vec<&str>>()[0].trim();
+            if let Ok(score) = score_str.parse::<i32>() {
+                if score >= 80 {
+                    return "[SUCCESS] Policy Passed: Identity Verified.".to_string();
+                } else {
+                    return format!("[FAILED] Policy Rejected: Trust Score {} below threshold (80).", score);
+                }
+            }
+        }
+        "[ERROR] Invalid Policy Format. Principal context missing.".to_string()
     }
 
     fn generate_mock_key(&self) -> String {
