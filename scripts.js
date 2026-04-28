@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "tag": "Research",
             "date": "Apr 19, 2026",
             "readTime": "15 min read",
-            "image": "assets/ai_threats.png",
+            "image": "assets/ai_threats_hero_v3_1777321659472.png",
             "url": "posts/ai-threats.html"
         },
         {
