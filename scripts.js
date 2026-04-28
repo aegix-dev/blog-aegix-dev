@@ -253,62 +253,6 @@ document.addEventListener('DOMContentLoaded', () => {
         threshold: 0.1
     });
 
-    // 5. Advanced Subscription Engine
-    const newsletterForm = document.getElementById('newsletter-form');
-    const formStatus = document.getElementById('form-status');
-
-    if (newsletterForm) {
-        newsletterForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const email = newsletterForm.querySelector('input[type="email"]').value;
-            const button = newsletterForm.querySelector('button');
-
-            // Start "Scanning" Animation
-            newsletterForm.classList.add('scanning');
-            button.disabled = true;
-            button.textContent = 'VALIDATING IDENTITY...';
-
-            try {
-                // Buttondown's public subscription endpoint
-                // Replace 'YOUR_BUTTONDOWN_USERNAME' with your actual username
-                const response = await fetch('https://buttondown.email/api/emails/embed-subscribe/aegix', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },
-                    body: new URLSearchParams({
-                        'email': email,
-                        'embed': '1' // Ensures we stay on the page
-                    })
-                });
-
-                // Buttondown returns a redirect or a success page. 
-                // Since we are using fetch, we just check if it didn't crash.
-                if (response.ok) {
-                    // Success State
-                    setTimeout(() => {
-                        newsletterForm.classList.remove('scanning');
-                        newsletterForm.style.display = 'none';
-                        formStatus.textContent = 'ID VERIFIED. WELCOME TO THE AEGIX PERIMETER.';
-                        formStatus.style.display = 'block';
-                        formStatus.style.color = 'var(--primary)';
-                    }, 1500);
-                } else {
-                    throw new Error('Verification Failed');
-                }
-            } catch (error) {
-                // Error State
-                setTimeout(() => {
-                    newsletterForm.classList.remove('scanning');
-                    button.disabled = false;
-                    button.textContent = 'Retry Initialization';
-                    formStatus.textContent = 'ERROR: SIGNAL INTERRUPTED. PLEASE TRY AGAIN.';
-                    formStatus.style.display = 'block';
-                    formStatus.style.color = '#ff4d4d'; // Security Red
-                }, 1500);
-            }
-        });
-    }
 
     // 6. Terminal Logic
     const termTrigger = document.getElementById('terminal-trigger');

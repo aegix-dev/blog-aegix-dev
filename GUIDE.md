@@ -30,13 +30,20 @@ Aegix uses two registries to drive the UI. Both **must** be updated:
 - `image`: Path starting with `assets/`.
 - `url`: Path starting with `posts/`.
 
-### Step 3: SEO & Syndication
+### Step 3: SEO & RSS Syndication
 1.  **`sitemap.xml`**: Add the new URL with a `priority` of `0.8`.
-2.  **`rss.xml`**: Add a new `<item>` block. This is critical for the **Buttondown** newsletter automation.
+2.  **`rss.xml`**: Add a new `<item>` block. This is our primary distribution channel for security engineers. Ensure the `pubDate` is in RFC 822 format (e.g., `Tue, 28 Apr 2026 00:00:00 +0000`).
 
 ---
 
-## 🎨 Design Standards (Cyber-Security Noir)
+## 📡 Distribution Strategy
+
+Aegix follows a privacy-first distribution model. We do not use third-party email trackers or centralized newsletter platforms.
+
+- **RSS Feed**: Our primary "push" mechanism. Readers are encouraged to use professional aggregators (Feedly, Inoreader, or CLI-based tools).
+- **Social**: Manual updates are posted to the Aegix GitHub and LinkedIn profiles.
+
+---
 
 To maintain the premium feel of the Aegix brand, follow these visual guidelines:
 
