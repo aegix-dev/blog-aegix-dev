@@ -1,55 +1,65 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- Posts Data ---
     const allPosts = [{
-        "id": "zero-trust",
-        "title": "Beyond the Perimeter: Implementing Zero Trust",
-        "excerpt": "Why traditional network security is failing modern distributed teams and how to fix it.",
-        "tag": "Architecture",
-        "date": "Apr 21, 2026",
-        "readTime": "8 min read",
-        "image": "assets/zero_trust_hero_1777315326317.png",
-        "url": "posts/zero-trust.html"
-    },
-    {
-        "id": "supply-chain",
-        "title": "Hardening the Software Supply Chain",
-        "excerpt": "A deep dive into securing your CI/CD pipelines and managing third-party dependency risks.",
-        "tag": "Research",
-        "date": "Apr 23, 2026",
-        "readTime": "12 min read",
-        "image": "assets/supply_chain_security_1777315341624.png",
-        "url": "posts/supply-chain.html"
-    },
-    {
-        "id": "rust-future",
-        "title": "Why Rust is the Future of Secure Systems",
-        "excerpt": "Exploring memory safety, ownership, and how Rust eliminates entire classes of vulnerabilities.",
-        "tag": "Languages",
-        "date": "Apr 25, 2026",
-        "readTime": "10 min read",
-        "image": "assets/rust_security_hero_1777315358276.png",
-        "url": "posts/rust-future.html"
-    },
-    {
-        "id": "envelope-encryption",
-        "title": "Scaling Trust: A Guide to Envelope Encryption",
-        "excerpt": "Protect your data at scale by mastering the relationship between DEKs and KEKs.",
-        "tag": "Cryptography",
-        "date": "Apr 27, 2026",
-        "readTime": "7 min read",
-        "image": "assets/envelope_encryption_hero_1777319572101.png",
-        "url": "posts/envelope-encryption.html"
-    },
-    {
-        "id": "ai-threats",
-        "title": "The Emerging Landscape of AI-Driven Threats",
-        "excerpt": "How large language models are being leveraged for automated phishing and vulnerability discovery.",
-        "tag": "Research",
-        "date": "Apr 19, 2026",
-        "readTime": "15 min read",
-        "image": "assets/ai_threats_hero_v3_1777321659472.png",
-        "url": "posts/ai-threats.html"
-    }
+            "id": "zero-trust",
+            "title": "Beyond the Perimeter: Implementing Zero Trust",
+            "excerpt": "Why traditional network security is failing modern distributed teams and how to fix it.",
+            "tag": "Architecture",
+            "date": "Apr 21, 2026",
+            "readTime": "8 min read",
+            "image": "assets/zero_trust_hero_1777315326317.png",
+            "url": "posts/zero-trust.html"
+        },
+        {
+            "id": "supply-chain",
+            "title": "Hardening the Software Supply Chain",
+            "excerpt": "A deep dive into securing your CI/CD pipelines and managing third-party dependency risks.",
+            "tag": "Research",
+            "date": "Apr 23, 2026",
+            "readTime": "12 min read",
+            "image": "assets/supply_chain_security_1777315341624.png",
+            "url": "posts/supply-chain.html"
+        },
+        {
+            "id": "rust-future",
+            "title": "Why Rust is the Future of Secure Systems",
+            "excerpt": "Exploring memory safety, ownership, and how Rust eliminates entire classes of vulnerabilities.",
+            "tag": "Languages",
+            "date": "Apr 25, 2026",
+            "readTime": "10 min read",
+            "image": "assets/rust_security_hero_1777315358276.png",
+            "url": "posts/rust-future.html"
+        },
+        {
+            "id": "envelope-encryption",
+            "title": "Scaling Trust: A Guide to Envelope Encryption",
+            "excerpt": "Protect your data at scale by mastering the relationship between DEKs and KEKs.",
+            "tag": "Cryptography",
+            "date": "Apr 27, 2026",
+            "readTime": "7 min read",
+            "image": "assets/envelope_encryption_hero_1777319572101.png",
+            "url": "posts/envelope-encryption.html"
+        },
+        {
+            "id": "ai-threats",
+            "title": "The Emerging Landscape of AI-Driven Threats",
+            "excerpt": "How large language models are being leveraged for automated phishing and vulnerability discovery.",
+            "tag": "Research",
+            "date": "Apr 19, 2026",
+            "readTime": "15 min read",
+            "image": "assets/ai_threats.png",
+            "url": "posts/ai-threats.html"
+        },
+        {
+            "id": "secrets-management",
+            "title": "Env Vars vs. KMS: The Secret Management Paradox",
+            "excerpt": "A deep dive into the security tradeoffs between environment variables and dedicated Key Management Systems.",
+            "tag": "Research",
+            "date": "Apr 28, 2026",
+            "readTime": "12 min read",
+            "image": "assets/secrets_management.png",
+            "url": "posts/secrets-management.html"
+        }
     ];
 
     let activeTag = 'all';
@@ -263,7 +273,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Replace 'YOUR_BUTTONDOWN_USERNAME' with your actual username
                 const response = await fetch('https://buttondown.email/api/emails/embed-subscribe/aegix', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
                     body: new URLSearchParams({
                         'email': email,
                         'embed': '1' // Ensures we stay on the page

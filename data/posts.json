@@ -1,5 +1,4 @@
-[
-    {
+[{
         "id": "zero-trust",
         "title": "Beyond the Perimeter: Implementing Zero Trust",
         "excerpt": "Why traditional network security is failing modern distributed teams and how to fix it.",
@@ -46,7 +45,17 @@
         "tag": "Research",
         "date": "Apr 19, 2026",
         "readTime": "15 min read",
-        "image": "assets/ai_threats_hero_v3_1777321659472.png",
+        "image": "assets/ai_threats.png",
         "url": "posts/ai-threats.html"
+    },
+    {
+        "id": "secrets-management",
+        "title": "Env Vars vs. KMS: The Secret Management Paradox",
+        "excerpt": "A deep dive into the security tradeoffs between environment variables and dedicated Key Management Systems.",
+        "tag": "Research",
+        "date": "Apr 28, 2026",
+        "readTime": "12 min read",
+        "image": "assets/secrets_management.png",
+        "url": "posts/secrets-management.html"
     }
 ]

@@ -51,11 +51,11 @@
 
         <div class="post-content reveal" style="animation-delay: 0.4s;">
             <p>The modern software development lifecycle is more complex than ever. We no longer write 100% of our code; we assemble it from thousands of open-source building blocks. This reliance on third-party dependencies has created a massive new attack surface: the Software Supply Chain.</p>
-            
+
 
             <h2>The Anatomy of a Supply Chain Attack</h2>
             <p>A supply chain attack doesn't target your production server directly. Instead, it compromises a tool or a library that you trust. Whether it's a malicious dependency update or a compromised build runner, the goal is to inject malicious code into your artifact before it ever reaches your infrastructure.</p>
-            
+
 
             <pre><code class="language-yaml"># Example: Verifying SBOMs in GitHub Actions
 name: Supply Chain Security
@@ -72,7 +72,7 @@ jobs:
 
             <h2>The SLSA Framework</h2>
             <p>To defend against these threats, the industry is gravitating toward <strong>SLSA (Supply-chain Levels for Software Artifacts)</strong>. SLSA is a set of incremental security standards that help you reach "Build Integrity." By reaching SLSA Level 3, you ensure that your artifacts are built on non-falsifiable, ephemeral build runners with verifiable provenance.</p>
-            
+
 
             <pre><code class="language-bash"># Verifying artifact provenance with Cosign
 cosign verify-attestation --type slsaprovenance \
@@ -87,21 +87,21 @@ cosign verify-attestation --type slsaprovenance \
             </ul>
 
             <p>By treating your build pipeline as a production environment, you can ensure that the code you ship is exactly the code you intended to write.</p>
-            
+
         </div>
         </article>
     </main>
 
     <footer id="about">
-    <div class="footer-content">
-        <div class="logo" style="margin-bottom: 1rem; opacity: 0.8;">AEGIX</div>
-        <p style="color: var(--text-dim); margin-bottom: 1.5rem;">&copy; 2026 Aegix Security Inc. Built for developers, by developers.</p>
-        <div class="social-links">
-            <a href="https://github.com/orgs/aegix-dev/dashboard" target="_blank" rel="noopener noreferrer">GitHub</a>
-            <a href="https://www.linkedin.com/company/107901904" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <div class="footer-content">
+            <div class="logo" style="margin-bottom: 1rem; opacity: 0.8;">AEGIX</div>
+            <p style="color: var(--text-dim); margin-bottom: 1.5rem;">&copy; 2026 Aegix Security Inc. Built for developers, by developers.</p>
+            <div class="social-links">
+                <a href="https://github.com/orgs/aegix-dev/dashboard" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://www.linkedin.com/company/107901904" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </div>
         </div>
-    </div>
-</footer>
+    </footer>
 
     <script src="../scripts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>

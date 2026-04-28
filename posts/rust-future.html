@@ -51,15 +51,15 @@
 
         <div class="post-content reveal" style="animation-delay: 0.4s;">
             <p>For decades, systems programming has been dominated by C and C++. While powerful, these languages place the burden of memory management entirely on the developer. One mistake—a null pointer dereference or a buffer overflow—can lead to catastrophic security vulnerabilities.</p>
-            
+
 
             <h2>The Safety Guarantee</h2>
             <p>Rust changes the game by introducing a unique "ownership" model that the compiler enforces at build time. This means that entire classes of bugs, like use-after-free or data races, are physically impossible to write in "safe" Rust.</p>
-            
+
 
             <h2>The Memory Safety Gap</h2>
             <p>To understand Rust's value, we must look at how traditional languages handle memory. In C++, a simple mistake like a <em>Use-After-Free</em> can be exploited to gain remote code execution. Rust's <strong>Borrow Checker</strong> prevents this at compile time by enforcing strict rules on how many parts of your code can "own" or "borrow" a piece of data.</p>
-            
+
 
             <pre><code class="language-rust">// C++ (Vulnerable) vs Rust (Safe)
 // In Rust, this simply will not compile:
@@ -75,24 +75,24 @@ fn main() {
 
             <h2>Performance Without Compromise</h2>
             <p>Unlike languages that rely on a Garbage Collector (GC), Rust achieves memory safety without any runtime overhead. This makes it ideal for security-critical infrastructure where performance is non-negotiable—from operating system kernels to high-frequency trading platforms.</p>
-            
+
 
             <p>At Aegix, we believe that the transition to memory-safe languages is the single most important step the industry can take toward a more secure digital future.</p>
-            
+
         </div>
         </article>
     </main>
 
     <footer id="about">
-    <div class="footer-content">
-        <div class="logo" style="margin-bottom: 1rem; opacity: 0.8;">AEGIX</div>
-        <p style="color: var(--text-dim); margin-bottom: 1.5rem;">&copy; 2026 Aegix Security Inc. Built for developers, by developers.</p>
-        <div class="social-links">
-            <a href="https://github.com/orgs/aegix-dev/dashboard" target="_blank" rel="noopener noreferrer">GitHub</a>
-            <a href="https://www.linkedin.com/company/107901904" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <div class="footer-content">
+            <div class="logo" style="margin-bottom: 1rem; opacity: 0.8;">AEGIX</div>
+            <p style="color: var(--text-dim); margin-bottom: 1.5rem;">&copy; 2026 Aegix Security Inc. Built for developers, by developers.</p>
+            <div class="social-links">
+                <a href="https://github.com/orgs/aegix-dev/dashboard" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://www.linkedin.com/company/107901904" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </div>
         </div>
-    </div>
-</footer>
+    </footer>
 
     <script src="../scripts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>

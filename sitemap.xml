@@ -1,28 +1,48 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    <url>
-        <loc>https://blog.aegix.dev/</loc>
-        <lastmod>2026-04-27</lastmod>
-        <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>https://blog.aegix.dev/posts/zero-trust.html</loc>
-        <lastmod>2026-04-21</lastmod>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://blog.aegix.dev/posts/supply-chain.html</loc>
-        <lastmod>2026-04-23</lastmod>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://blog.aegix.dev/posts/rust-future.html</loc>
-        <lastmod>2026-04-25</lastmod>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://blog.aegix.dev/posts/envelope-encryption.html</loc>
-        <lastmod>2026-04-27</lastmod>
-        <priority>0.8</priority>
-    </url>
-</urlset>
+< ? xml version = "1.0"
+encoding = "UTF-8" ? >
+    <
+    urlset xmlns = "http://www.sitemaps.org/schemas/sitemap/0.9" >
+    <
+    url >
+    <
+    loc > https : //blog.aegix.dev/</loc>
+    <
+    lastmod > 2026 - 04 - 27 < /lastmod> <
+    priority > 1.0 < /priority> <
+    /url> <
+    url >
+    <
+    loc > https: //blog.aegix.dev/posts/zero-trust.html</loc>
+    <
+    lastmod > 2026 - 04 - 21 < /lastmod> <
+    priority > 0.8 < /priority> <
+    /url> <
+    url >
+    <
+    loc > https: //blog.aegix.dev/posts/supply-chain.html</loc>
+    <
+    lastmod > 2026 - 04 - 23 < /lastmod> <
+    priority > 0.8 < /priority> <
+    /url> <
+    url >
+    <
+    loc > https: //blog.aegix.dev/posts/rust-future.html</loc>
+    <
+    lastmod > 2026 - 04 - 25 < /lastmod> <
+    priority > 0.8 < /priority> <
+    /url> <
+    url >
+    <
+    loc > https: //blog.aegix.dev/posts/envelope-encryption.html</loc>
+    <
+    lastmod > 2026 - 04 - 27 < /lastmod> <
+    priority > 0.8 < /priority> <
+    /url> <
+    url >
+    <
+    loc > https: //blog.aegix.dev/posts/secrets-management.html</loc>
+    <
+    lastmod > 2026 - 04 - 28 < /lastmod> <
+    priority > 0.8 < /priority> <
+    /url> <
+    /urlset>
