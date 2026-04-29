@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                 post.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
             return matchesTag && matchesSearch;
-        });
+        }).reverse();
 
         grid.innerHTML = '';
 
