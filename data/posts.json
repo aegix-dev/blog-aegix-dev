@@ -57,5 +57,15 @@
         "readTime": "12 min read",
         "image": "assets/secrets_management.png",
         "url": "posts/secrets-management.html"
+    },
+    {
+        "id": "wasm-security",
+        "title": "Wasm: Near-Native Speed, Zero-Trust Execution",
+        "excerpt": "Exploring the security architecture and performance benefits of WebAssembly for modern systems programming.",
+        "tag": "Architecture",
+        "date": "Apr 29, 2026",
+        "readTime": "12 min read",
+        "image": "assets/wasm_security.png",
+        "url": "posts/wasm-security.html"
     }
 ]

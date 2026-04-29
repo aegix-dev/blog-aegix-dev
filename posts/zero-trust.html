@@ -72,6 +72,26 @@ async function authorizeRequest(request) {
     throw new SecurityException("UNAUTHORIZED_ACCESS_BLOCK");
 }</code></pre>
 
+            <div class="code-playground reveal">
+                <div class="playground-header">
+                    <h4>AEGIX POLICY SIMULATOR v1.0 [WASM]</h4>
+                </div>
+                <p style="font-size: 0.85rem; color: var(--text-dim); margin-bottom: 0.5rem;">Tweak the <code>trust_score</code> below and run the simulation to test the Zero Trust policy engine.</p>
+                <textarea class="playground-editor">{
+    "principal": "aegix-admin",
+    "resource": "database-prod",
+    "context": {
+        "mfa_verified": true,
+        "trust_score": 85,
+        "location": "BERLIN_HQ"
+    }
+}</textarea>
+                <div class="playground-controls">
+                    <div class="playground-output">Ready to evaluate...</div>
+                    <button class="run-btn">RUN SIMULATION</button>
+                </div>
+            </div>
+
             <p>Unlike traditional models that grant broad access once a user is "inside," Zero Trust focuses on micro-segmentation and least-privilege access. This means even if one part of your infrastructure is compromised, the attacker is contained.</p>
 
 

@@ -416,6 +416,81 @@ pre:hover .copy-btn {
     color: var(--primary);
 }
 
+/* Interactive Playground */
+.code-playground {
+    margin: 2.5rem 0;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.playground-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.playground-header h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--primary);
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+.playground-editor {
+    background: #050505;
+    border: 1px solid var(--glass-border);
+    color: var(--primary);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.95rem;
+    padding: 1.2rem;
+    border-radius: 6px;
+    width: 100%;
+    min-height: 140px;
+    resize: vertical;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.playground-editor:focus {
+    border-color: var(--primary);
+}
+
+.run-btn {
+    background: var(--primary);
+    color: black;
+    border: none;
+    padding: 0.6rem 1.8rem;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.run-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(0, 245, 255, 0.4);
+}
+
+.playground-output {
+    background: rgba(0, 245, 255, 0.05);
+    border-left: 3px solid var(--primary);
+    padding: 1.2rem;
+    border-radius: 0 4px 4px 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    min-height: 60px;
+    color: var(--text);
+}
+
 /* Grid Background Effect */
 .bg-grid {
     position: fixed;

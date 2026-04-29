@@ -59,6 +59,16 @@ document.addEventListener('DOMContentLoaded', () => {
             "readTime": "12 min read",
             "image": "assets/secrets_management.png",
             "url": "posts/secrets-management.html"
+        },
+        {
+            "id": "wasm-security",
+            "title": "Wasm: Near-Native Speed, Zero-Trust Execution",
+            "excerpt": "Exploring the security architecture and performance benefits of WebAssembly for modern systems programming.",
+            "tag": "Architecture",
+            "date": "Apr 29, 2026",
+            "readTime": "12 min read",
+            "image": "assets/wasm_security.png",
+            "url": "posts/wasm-security.html"
         }
     ];
 
@@ -240,6 +250,51 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     setupCodeBlocks();
+    initCopyButtons();
+    initPlaygrounds();
+
+    // 4. Global Code Utilities
+    function initCopyButtons() {
+        document.querySelectorAll('pre').forEach(block => {
+            const button = document.createElement('button');
+            button.className = 'copy-btn';
+            button.innerText = 'COPY';
+            button.style.position = 'absolute';
+            button.style.top = '0.5rem';
+            button.style.right = '0.5rem';
+
+            block.style.position = 'relative';
+            block.appendChild(button);
+
+            button.addEventListener('click', () => {
+                const code = block.querySelector('code').innerText;
+                navigator.clipboard.writeText(code).then(() => {
+                    button.innerText = 'COPIED!';
+                    setTimeout(() => button.innerText = 'COPY', 2000);
+                });
+            });
+        });
+    }
+
+    function initPlaygrounds() {
+        document.querySelectorAll('.code-playground').forEach(playground => {
+            const editor = playground.querySelector('.playground-editor');
+            const runBtn = playground.querySelector('.run-btn');
+            const output = playground.querySelector('.playground-output');
+
+            if (runBtn && editor && output) {
+                runBtn.addEventListener('click', () => {
+                    const code = editor.value || editor.innerText;
+                    output.innerHTML = '<span style="color: var(--primary)">[SYSTEM] EVALUATING...</span>';
+
+                    setTimeout(() => {
+                        const result = wasmProxy.evaluate(code);
+                        output.innerHTML = result;
+                    }, 800);
+                });
+            }
+        });
+    }
 
     // Intersection Observer for reveal animations
     const observer = new IntersectionObserver((entries) => {
@@ -280,6 +335,19 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!data) return 'ERROR: Usage "encrypt <data>"';
             const encrypted = data.split('').map(c => String.fromCharCode(c.charCodeAt(0) ^ 42)).join('');
             return `<span style="color: var(--primary)">[WASM_ENGINE]</span> Encrypted Payload (XOR-42): ${encrypted}`;
+        },
+        evaluate: (policy) => {
+            // Simulated Rust Logic
+            if (policy.includes('"trust_score":')) {
+                const parts = policy.split('"trust_score":')[1].split(/[},]/)[0].trim();
+                const score = parseInt(parts);
+                if (!isNaN(score)) {
+                    return score >= 80 ?
+                        `<span style="color: #4ade80">[SUCCESS] Policy Passed: Trust Score ${score} Verified.</span>` :
+                        `<span style="color: #f87171">[FAILED] Policy Rejected: Trust Score ${score} below threshold (80).</span>`;
+                }
+            }
+            return `<span style="color: var(--secondary)">[ERROR] Invalid Policy Syntax. Access Denied.</span>`;
         }
     };
 
