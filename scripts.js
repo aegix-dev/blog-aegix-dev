@@ -281,14 +281,22 @@ document.addEventListener('DOMContentLoaded', () => {
             const editor = playground.querySelector('.playground-editor');
             const runBtn = playground.querySelector('.run-btn');
             const output = playground.querySelector('.playground-output');
+            const engine = playground.getAttribute('data-engine') || 'evaluate';
 
             if (runBtn && editor && output) {
                 runBtn.addEventListener('click', () => {
-                    const code = editor.value || editor.innerText;
-                    output.innerHTML = '<span style="color: var(--primary)">[SYSTEM] EVALUATING...</span>';
+                    const input = editor.value || editor.innerText;
+                    output.innerHTML = '<span style="color: var(--primary)">[SYSTEM] PROCESSING...</span>';
 
                     setTimeout(() => {
-                        const result = wasmProxy.evaluate(code);
+                        let result;
+                        if (engine === 'encrypt') {
+                            result = wasmProxy.encrypt(input);
+                        } else if (engine === 'genkey') {
+                            result = wasmProxy.genkey();
+                        } else {
+                            result = wasmProxy.evaluate(input);
+                        }
                         output.innerHTML = result;
                     }, 800);
                 });

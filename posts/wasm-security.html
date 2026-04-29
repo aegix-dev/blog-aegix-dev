@@ -76,7 +76,7 @@ pub fn secure_parse(data: &str) -> Result<ParsedData, Error> {
             <h2>Near-Native Performance</h2>
             <p>Wasm is a binary format designed for fast JIT (Just-In-Time) or AOT (Ahead-Of-Time) compilation. For heavy tasks like **image processing**, **cryptography**, or **real-time physics**, Wasm consistently outperforms JavaScript by significant margins because it maps directly to modern CPU instructions.</p>
 
-            <div class="code-playground reveal">
+            <div class="code-playground reveal" data-engine="encrypt">
                 <div class="playground-header">
                     <h4>WASM CRYPTO DEMO</h4>
                 </div>
@@ -92,7 +92,6 @@ pub fn secure_parse(data: &str) -> Result<ParsedData, Error> {
             <p>WebAssembly represents the convergence of high-performance systems programming and the safety requirements of the modern web. Whether you are hardening a frontend or scaling a global edge network, Wasm is the sandbox that refuses to break.</p>
         </div>
     </main>
-
     <footer id="about">
         <div class="footer-content">
             <div class="logo" style="margin-bottom: 1rem; opacity: 0.8;">AEGIX</div>
@@ -108,14 +107,6 @@ pub fn secure_parse(data: &str) -> Result<ParsedData, Error> {
     <script src="../scripts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-rust.min.js"></script>
-    <script>
-        // Custom logic for this post's playground
-        document.querySelector('.run-btn').addEventListener('click', () => {
-            const editor = document.querySelector('.playground-editor');
-            const output = document.querySelector('.playground-output');
-            output.innerHTML = wasmProxy.encrypt(editor.value);
-        });
-    </script>
 </body>
 
 </html>
