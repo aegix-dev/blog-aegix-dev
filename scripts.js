@@ -69,6 +69,16 @@ document.addEventListener('DOMContentLoaded', () => {
             "readTime": "12 min read",
             "image": "assets/wasm_security.png",
             "url": "posts/wasm-security.html"
+        },
+        {
+            "id": "ebpf-security",
+            "title": "Seeing Everything: Why eBPF is the New Standard for Runtime Security",
+            "excerpt": "Discover how Extended Berkeley Packet Filter (eBPF) provides unprecedented, high-performance runtime observability and security in the Linux kernel.",
+            "tag": "Architecture",
+            "date": "May 1, 2026",
+            "readTime": "10 min read",
+            "image": "assets/ebpf_hero.png",
+            "url": "posts/ebpf-security.html"
         }
     ];
 

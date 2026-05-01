@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seeing Everything: Why eBPF is the New Standard for Runtime Security | Aegix Blog</title>
+    <meta name="description" content="Discover how Extended Berkeley Packet Filter (eBPF) provides unprecedented, high-performance runtime observability and security in the Linux kernel.">
+    <meta property="og:title" content="Seeing Everything: Why eBPF is the New Standard for Runtime Security | Aegix Blog">
+    <meta property="og:image" content="../assets/ebpf_hero.png">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="alternate" type="application/rss+xml" title="Aegix Security Blog RSS Feed" href="https://blog.aegix.dev/rss.xml" />
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&family=JetBrains+Mono:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="reading-progress"></div>
+    <div class="bg-grid"></div>
+
+    <header>
+        <a href="../index.html" class="logo">AEGIX</a>
+        <nav>
+            <ul>
+                <li><a href="../index.html#latest">Insights</a></li>
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="../rss.xml" class="cta-button" style="padding: 0.5rem 1rem; font-size: 0.8rem;">RSS Feed</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="post-container">
+        <a href="../index.html" class="back-link">← Back to Blog</a>
+
+        <div class="post-meta">
+            <span>May 1, 2026</span>
+            <span>Architecture</span>
+            <span>10 min read</span>
+        </div>
+
+        <h1 class="post-title reveal">
+            <span class="decrypt" data-text="Seeing Everything:">Seeing Everything:</span><br>
+            <span class="decrypt" style="color: var(--primary);" data-text="eBPF Runtime Security">eBPF Runtime Security</span>
+        </h1>
+
+        <div class="post-hero reveal" style="animation-delay: 0.2s;">
+            <img src="../assets/ebpf_hero.png" alt="eBPF Kernel Visualization">
+        </div>
+
+        <div class="post-content reveal" style="animation-delay: 0.4s;">
+            <p>If you've been following our discussions on securing the build pipeline and isolating execution with WebAssembly, you know that modern security requires defense in depth. But what happens when an attacker manages to bypass the perimeter and execute code on your server? Enter <strong>eBPF (Extended Berkeley Packet Filter)</strong>, the technology that is fundamentally changing how we approach runtime security in the Linux kernel.</p>
+
+            <h2>What is eBPF?</h2>
+            <p>Historically, to monitor system calls or network traffic at the kernel level, you had to write a custom kernel module. This was risky—a single bug could crash the entire operating system. eBPF solves this by allowing developers to run sandboxed programs directly within the Linux kernel without changing kernel source code or loading vulnerable modules.</p>
+
+            <pre><code class="language-c">// Example: A simple eBPF C program to hook into the execve syscall
+SEC("tracepoint/syscalls/sys_enter_execve")
+int bpf_prog(struct trace_event_raw_sys_enter *ctx) {
+    char comm[TASK_COMM_LEN];
+    bpf_get_current_comm(&comm, sizeof(comm));
+    
+    // Log the execution of a new process
+    bpf_printk("Process executed: %s\\n", comm);
+    return 0;
+}</code></pre>
+
+            <h2>Unprecedented Observability</h2>
+            <p>Because eBPF operates at the lowest level of the OS, it can observe everything. When a container tries to open a sensitive file, or a compromised microservice attempts to establish an unexpected outbound network connection, an eBPF program can instantly detect and even block the action.</p>
+
+            <div class="pro-tip" style="background: rgba(0, 245, 255, 0.05); border-left: 4px solid var(--primary); padding: 1.5rem; margin: 2rem 0; border-radius: 4px;">
+                <strong style="color: var(--primary); display: block; margin-bottom: 0.5rem;">THE PERFORMANCE ADVANTAGE</strong>
+                <p style="font-size: 0.95rem; margin-bottom: 0;">Unlike traditional agent-based security tools that run in user space and require expensive context switches, eBPF executes within the kernel. This allows it to process millions of events per second with virtually zero performance overhead, making it ideal for high-throughput cloud-native environments.</p>
+            </div>
+
+            <h2>Preventing Container Escapes</h2>
+            <p>In a Kubernetes environment, traditional security tools often lack visibility into what's happening inside individual containers. eBPF provides a unified, cluster-wide view. If an attacker exploits a vulnerability to break out of a container and access the host filesystem, an eBPF-powered tool like Cilium or Tetragon can detect the anomalous syscall pattern and kill the process in real-time.</p>
+
+            <h2>Conclusion</h2>
+            <p>eBPF represents a paradigm shift. We no longer have to choose between performance and security. By giving us deep, systemic observability right at the kernel level, eBPF ensures that even if our outer defenses fail, we can still see—and stop—the attack before data is exfiltrated.</p>
+        </div>
+    </main>
+
+    <footer id="about">
+        <div class="footer-content">
+            <div class="logo" style="margin-bottom: 1rem; opacity: 0.8;">AEGIX</div>
+            <p style="color: var(--text-dim); margin-bottom: 1.5rem;">&copy; 2026 Aegix Security Inc. Built for developers, by developers.</p>
+            <div class="social-links">
+                <a href="https://github.com/orgs/aegix-dev/dashboard" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://www.linkedin.com/company/107901904" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="../rss.xml" target="_blank" rel="noopener noreferrer">RSS</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+</body>
+
+</html>
