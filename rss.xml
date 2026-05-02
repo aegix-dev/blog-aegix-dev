@@ -15,6 +15,16 @@
     </image>
 
     <item>
+        <title>Shifting Left is Broken: A Pragmatic Approach to IaC Security</title>
+        <link>https://blog.aegix.dev/posts/iac-security.html</link>
+        <guid isPermaLink="true">https://blog.aegix.dev/posts/iac-security.html</guid>
+        <pubDate>Sat, 02 May 2026 00:00:00 +0000</pubDate>
+        <category>DevSecOps</category>
+        <description><![CDATA[Discover why traditional shift-left security fails and how to secure your Infrastructure as Code (IaC) with Policy-as-Code.]]></description>
+        <media:content url="https://blog.aegix.dev/assets/iac_hero.png" medium="image" />
+    </item>
+
+    <item>
         <title>Seeing Everything: Why eBPF is the New Standard for Runtime Security</title>
         <link>https://blog.aegix.dev/posts/ebpf-security.html</link>
         <guid isPermaLink="true">https://blog.aegix.dev/posts/ebpf-security.html</guid>

@@ -79,6 +79,16 @@ document.addEventListener('DOMContentLoaded', () => {
             "readTime": "10 min read",
             "image": "assets/ebpf_hero.png",
             "url": "posts/ebpf-security.html"
+        },
+        {
+            "id": "iac-security",
+            "title": "Shifting Left is Broken: A Pragmatic Approach to IaC Security",
+            "excerpt": "Discover why traditional shift-left security fails and how to secure your Infrastructure as Code (IaC) with Policy-as-Code.",
+            "tag": "DevSecOps",
+            "date": "May 2, 2026",
+            "readTime": "9 min read",
+            "image": "assets/iac_hero.png",
+            "url": "posts/iac-security.html"
         }
     ];
 
