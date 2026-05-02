@@ -89,6 +89,16 @@ document.addEventListener('DOMContentLoaded', () => {
             "readTime": "9 min read",
             "image": "assets/iac_hero.png",
             "url": "posts/iac-security.html"
+        },
+        {
+            "id": "wasm-vs-containers",
+            "title": "Wasm vs. Containers: The Future of Cloud-Native Execution",
+            "excerpt": "A deep dive into why WebAssembly is challenging Docker containers as the premier compute unit for edge and cloud-native applications.",
+            "tag": "Architecture",
+            "date": "May 3, 2026",
+            "readTime": "11 min read",
+            "image": "assets/wasm_vs_containers_hero.png",
+            "url": "posts/wasm-vs-containers.html"
         }
     ];
 

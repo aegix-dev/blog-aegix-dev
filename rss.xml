@@ -15,6 +15,16 @@
     </image>
 
     <item>
+        <title>Wasm vs. Containers: The Future of Cloud-Native Execution</title>
+        <link>https://blog.aegix.dev/posts/wasm-vs-containers.html</link>
+        <guid isPermaLink="true">https://blog.aegix.dev/posts/wasm-vs-containers.html</guid>
+        <pubDate>Sun, 03 May 2026 00:00:00 +0000</pubDate>
+        <category>Architecture</category>
+        <description><![CDATA[A deep dive into why WebAssembly is challenging Docker containers as the premier compute unit for edge and cloud-native applications.]]></description>
+        <media:content url="https://blog.aegix.dev/assets/wasm_vs_containers_hero.png" medium="image" />
+    </item>
+
+    <item>
         <title>Shifting Left is Broken: A Pragmatic Approach to IaC Security</title>
         <link>https://blog.aegix.dev/posts/iac-security.html</link>
         <guid isPermaLink="true">https://blog.aegix.dev/posts/iac-security.html</guid>
