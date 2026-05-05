@@ -67,5 +67,45 @@
         "readTime": "12 min read",
         "image": "assets/wasm_security.png",
         "url": "posts/wasm-security.html"
+    },
+    {
+        "id": "ebpf-security",
+        "title": "Seeing Everything: eBPF Runtime Security",
+        "excerpt": "Discover how eBPF provides unprecedented, high-performance runtime observability and security.",
+        "tag": "Architecture",
+        "date": "May 1, 2026",
+        "readTime": "10 min read",
+        "image": "assets/ebpf_hero.png",
+        "url": "posts/ebpf-security.html"
+    },
+    {
+        "id": "iac-security",
+        "title": "Shifting Left is Broken: IaC Security",
+        "excerpt": "Discover why traditional shift-left security fails and how to secure your IaC with Policy-as-Code.",
+        "tag": "DevSecOps",
+        "date": "May 2, 2026",
+        "readTime": "9 min read",
+        "image": "assets/iac_hero.png",
+        "url": "posts/iac-security.html"
+    },
+    {
+        "id": "wasm-vs-containers",
+        "title": "Wasm vs. Containers: The Future of Cloud-Native",
+        "excerpt": "A deep dive into why WebAssembly is challenging Docker containers as the premier compute unit.",
+        "tag": "Architecture",
+        "date": "May 3, 2026",
+        "readTime": "11 min read",
+        "image": "assets/wasm_vs_containers_hero.png",
+        "url": "posts/wasm-vs-containers.html"
+    },
+    {
+        "id": "confidential-computing",
+        "title": "The Black Box: Confidential Computing in the Cloud",
+        "excerpt": "Explore how Trusted Execution Environments (TEEs) provide hardware-level isolation to protect your data in use.",
+        "tag": "Architecture",
+        "date": "May 4, 2026",
+        "readTime": "13 min read",
+        "image": "assets/confidential_computing_hero.png",
+        "url": "posts/confidential-computing.html"
     }
 ]

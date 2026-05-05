@@ -2,6 +2,17 @@
 
 This document outlines the workflow for creating high-fidelity technical articles for the Aegix blog and maintaining the "Cyber-Security Noir" aesthetic.
 
+## 🚀 Post-Creation Checklist (Mandatory)
+
+To ensure a new post is visible and discoverable, you **must** update the following files every time:
+
+1.  **`posts/[name].html`**: The actual content file.
+2.  **`data/posts.json`**: Add the post metadata to the central registry (The site now fetches this dynamically).
+3.  **`rss.xml`**: Add a new `<item>` to the feed for subscribers.
+4.  **`sitemap.xml`**: Add the new URL for search engine indexing.
+
+---
+
 ## ✍️ Creating a New Blog Post
 
 Content for Aegix is handled through a "Static Registry" pattern to ensure maximum performance and zero backend latency.

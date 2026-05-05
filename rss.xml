@@ -5,7 +5,7 @@
     <link>https://blog.aegix.dev</link>
     <description>Insights, research, and guides on modern application security, zero-trust architectures, and developer productivity.</description>
     <language>en-us</language>
-    <lastBuildDate>Wed, 29 Apr 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 04 May 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.aegix.dev/rss.xml" rel="self" type="application/rss+xml" />
     
     <image>
@@ -15,7 +15,17 @@
     </image>
 
     <item>
-        <title>Wasm vs. Containers: The Future of Cloud-Native Execution</title>
+        <title>The Black Box: Confidential Computing in the Cloud</title>
+        <link>https://blog.aegix.dev/posts/confidential-computing.html</link>
+        <guid isPermaLink="true">https://blog.aegix.dev/posts/confidential-computing.html</guid>
+        <pubDate>Mon, 04 May 2026 00:00:00 +0000</pubDate>
+        <category>Architecture</category>
+        <description><![CDATA[Explore how Trusted Execution Environments (TEEs) provide hardware-level isolation to protect your data in use.]]></description>
+        <media:content url="https://blog.aegix.dev/assets/confidential_computing_hero.png" medium="image" />
+    </item>
+
+    <item>
+        <title>Wasm vs. Containers: The Future of Cloud-Native</title>
         <link>https://blog.aegix.dev/posts/wasm-vs-containers.html</link>
         <guid isPermaLink="true">https://blog.aegix.dev/posts/wasm-vs-containers.html</guid>
         <pubDate>Sun, 03 May 2026 00:00:00 +0000</pubDate>
@@ -25,22 +35,22 @@
     </item>
 
     <item>
-        <title>Shifting Left is Broken: A Pragmatic Approach to IaC Security</title>
+        <title>Shifting Left is Broken: IaC Security</title>
         <link>https://blog.aegix.dev/posts/iac-security.html</link>
         <guid isPermaLink="true">https://blog.aegix.dev/posts/iac-security.html</guid>
         <pubDate>Sat, 02 May 2026 00:00:00 +0000</pubDate>
         <category>DevSecOps</category>
-        <description><![CDATA[Discover why traditional shift-left security fails and how to secure your Infrastructure as Code (IaC) with Policy-as-Code.]]></description>
+        <description><![CDATA[Discover why traditional shift-left security fails and how to secure your Infrastructure as Code with Policy-as-Code.]]></description>
         <media:content url="https://blog.aegix.dev/assets/iac_hero.png" medium="image" />
     </item>
 
     <item>
-        <title>Seeing Everything: Why eBPF is the New Standard for Runtime Security</title>
+        <title>Seeing Everything: eBPF Runtime Security</title>
         <link>https://blog.aegix.dev/posts/ebpf-security.html</link>
         <guid isPermaLink="true">https://blog.aegix.dev/posts/ebpf-security.html</guid>
         <pubDate>Fri, 01 May 2026 00:00:00 +0000</pubDate>
         <category>Architecture</category>
-        <description><![CDATA[Discover how Extended Berkeley Packet Filter (eBPF) provides unprecedented, high-performance runtime observability and security in the Linux kernel.]]></description>
+        <description><![CDATA[Discover how eBPF provides unprecedented, high-performance runtime observability and security in the Linux kernel.]]></description>
         <media:content url="https://blog.aegix.dev/assets/ebpf_hero.png" medium="image" />
     </item>
 

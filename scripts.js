@@ -1,113 +1,22 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- Posts Data ---
-    const allPosts = [{
-            "id": "zero-trust",
-            "title": "Beyond the Perimeter: Implementing Zero Trust",
-            "excerpt": "Why traditional network security is failing modern distributed teams and how to fix it.",
-            "tag": "Architecture",
-            "date": "Apr 21, 2026",
-            "readTime": "8 min read",
-            "image": "assets/zero_trust_hero_1777315326317.png",
-            "url": "posts/zero-trust.html"
-        },
-        {
-            "id": "supply-chain",
-            "title": "Hardening the Software Supply Chain",
-            "excerpt": "A deep dive into securing your CI/CD pipelines and managing third-party dependency risks.",
-            "tag": "Research",
-            "date": "Apr 23, 2026",
-            "readTime": "12 min read",
-            "image": "assets/supply_chain_security_1777315341624.png",
-            "url": "posts/supply-chain.html"
-        },
-        {
-            "id": "rust-future",
-            "title": "Why Rust is the Future of Secure Systems",
-            "excerpt": "Exploring memory safety, ownership, and how Rust eliminates entire classes of vulnerabilities.",
-            "tag": "Languages",
-            "date": "Apr 25, 2026",
-            "readTime": "10 min read",
-            "image": "assets/rust_security_hero_1777315358276.png",
-            "url": "posts/rust-future.html"
-        },
-        {
-            "id": "envelope-encryption",
-            "title": "Scaling Trust: A Guide to Envelope Encryption",
-            "excerpt": "Protect your data at scale by mastering the relationship between DEKs and KEKs.",
-            "tag": "Cryptography",
-            "date": "Apr 27, 2026",
-            "readTime": "7 min read",
-            "image": "assets/envelope_encryption_hero_1777319572101.png",
-            "url": "posts/envelope-encryption.html"
-        },
-        {
-            "id": "ai-threats",
-            "title": "The Emerging Landscape of AI-Driven Threats",
-            "excerpt": "How large language models are being leveraged for automated phishing and vulnerability discovery.",
-            "tag": "Research",
-            "date": "Apr 19, 2026",
-            "readTime": "15 min read",
-            "image": "assets/ai_threats_hero_v3_1777321659472.png",
-            "url": "posts/ai-threats.html"
-        },
-        {
-            "id": "secrets-management",
-            "title": "Env Vars vs. KMS: The Secret Management Paradox",
-            "excerpt": "A deep dive into the security tradeoffs between environment variables and dedicated Key Management Systems.",
-            "tag": "Research",
-            "date": "Apr 28, 2026",
-            "readTime": "12 min read",
-            "image": "assets/secrets_management.png",
-            "url": "posts/secrets-management.html"
-        },
-        {
-            "id": "wasm-security",
-            "title": "Wasm: Near-Native Speed, Zero-Trust Execution",
-            "excerpt": "Exploring the security architecture and performance benefits of WebAssembly for modern systems programming.",
-            "tag": "Architecture",
-            "date": "Apr 29, 2026",
-            "readTime": "12 min read",
-            "image": "assets/wasm_security.png",
-            "url": "posts/wasm-security.html"
-        },
-        {
-            "id": "ebpf-security",
-            "title": "Seeing Everything: Why eBPF is the New Standard for Runtime Security",
-            "excerpt": "Discover how Extended Berkeley Packet Filter (eBPF) provides unprecedented, high-performance runtime observability and security in the Linux kernel.",
-            "tag": "Architecture",
-            "date": "May 1, 2026",
-            "readTime": "10 min read",
-            "image": "assets/ebpf_hero.png",
-            "url": "posts/ebpf-security.html"
-        },
-        {
-            "id": "iac-security",
-            "title": "Shifting Left is Broken: A Pragmatic Approach to IaC Security",
-            "excerpt": "Discover why traditional shift-left security fails and how to secure your Infrastructure as Code (IaC) with Policy-as-Code.",
-            "tag": "DevSecOps",
-            "date": "May 2, 2026",
-            "readTime": "9 min read",
-            "image": "assets/iac_hero.png",
-            "url": "posts/iac-security.html"
-        },
-        {
-            "id": "wasm-vs-containers",
-            "title": "Wasm vs. Containers: The Future of Cloud-Native Execution",
-            "excerpt": "A deep dive into why WebAssembly is challenging Docker containers as the premier compute unit for edge and cloud-native applications.",
-            "tag": "Architecture",
-            "date": "May 3, 2026",
-            "readTime": "11 min read",
-            "image": "assets/wasm_vs_containers_hero.png",
-            "url": "posts/wasm-vs-containers.html"
-        }
-    ];
-
+    // --- State ---
+    let allPosts = [];
     let activeTag = 'all';
     let searchQuery = '';
 
     // --- Core Engine ---
-    function init() {
-        renderPosts();
+    async function init() {
+        try {
+            const response = await fetch('/data/posts.json');
+            if (!response.ok) throw new Error('Failed to fetch posts');
+            allPosts = await response.json();
+            renderPosts();
+        } catch (error) {
+            console.error('Aegix Registry Error:', error);
+            // Fallback for local development or missing registry
+            const grid = document.getElementById('blog-grid');
+            if (grid) grid.innerHTML = '<div style="color: var(--secondary); text-align: center; padding: 2rem;">[CRITICAL_ERROR] UNABLE TO REACH REGISTRY</div>';
+        }
     }
 
     function renderPosts() {
@@ -130,39 +39,30 @@ document.addEventListener('DOMContentLoaded', () => {
             noResults.style.display = 'none';
             grid.style.display = 'grid';
 
-            filtered.forEach((post, index) => {
+            filtered.forEach(post => {
                 const card = document.createElement('article');
-                card.className = 'card reveal';
-                card.style.animationDelay = `${index * 0.1}s`;
+                card.className = 'post-card reveal';
                 card.innerHTML = `
-                    <div class="card-image">
+                    <div class="post-card-image">
                         <img src="${post.image}" alt="${post.title}">
+                        <div class="post-card-tag">${post.tag}</div>
                     </div>
-                    <div class="card-content">
-                        <span class="card-tag">${post.tag}</span>
-                        <h3>${post.title}</h3>
-                        <p>${post.excerpt}</p>
-                        <div class="card-footer">
+                    <div class="post-card-content">
+                        <div class="post-card-meta">
                             <span>${post.date}</span>
                             <span>${post.readTime}</span>
                         </div>
+                        <h3 class="post-card-title">${post.title}</h3>
+                        <p class="post-card-excerpt">${post.excerpt}</p>
+                        <a href="${post.url}" class="read-more">Read Full Insight →</a>
                     </div>
-                    <a href="${post.url}" class="stretched-link" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></a>
                 `;
                 grid.appendChild(card);
             });
         }
     }
 
-    // --- Search & Filter Listeners ---
-    const searchInput = document.getElementById('post-search');
-    if (searchInput) {
-        searchInput.addEventListener('input', (e) => {
-            searchQuery = e.target.value;
-            renderPosts();
-        });
-    }
-
+    // --- Filter Logic ---
     const tagBtns = document.querySelectorAll('.tag-btn');
     tagBtns.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -173,110 +73,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- Visual Effects ---
-
-    // 1. Atomic Decrypt Animation (Zero-Jitter)
-    const decryptElements = document.querySelectorAll('.decrypt');
-    const glitchChars = '01X$#%&@*+=-_/';
-
-    function decryptEffect(element) {
-        const originalText = element.dataset.text || element.innerText;
-        const duration = 40;
-        let isRunning = false;
-
-        // --- PRE-INITIALIZE SPANS ---
-        // We do this once so we only update textContent later
-        element.innerHTML = '';
-        const charNodes = originalText.split('').map(char => {
-            const span = document.createElement('span');
-            span.className = 'decrypt-char';
-            // Use non-breaking space for spaces to preserve width
-            span.textContent = char === ' ' ? '\u00A0' : char;
-            element.appendChild(span);
-            return span;
+    // --- Search Logic ---
+    const searchInput = document.getElementById('search-input');
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            searchQuery = e.target.value;
+            renderPosts();
         });
-
-        element.onmouseover = () => {
-            if (isRunning) return;
-            isRunning = true;
-            element.classList.remove('finished');
-
-            let iteration = 0;
-            const maxIterations = originalText.length + 10;
-
-            const interval = setInterval(() => {
-                charNodes.forEach((span, index) => {
-                    const threshold = index + Math.random() * 5;
-
-                    if (iteration > threshold) {
-                        if (!span.classList.contains('resolved')) {
-                            span.classList.add('resolved');
-                            span.textContent = originalText[index] === ' ' ? '\u00A0' : originalText[index];
-                        }
-                    } else {
-                        // Update glitch char
-                        const randomChar = glitchChars[Math.floor(Math.random() * glitchChars.length)];
-                        span.textContent = randomChar;
-                    }
-                });
-
-                if (iteration >= maxIterations) {
-                    clearInterval(interval);
-                    isRunning = false;
-                    element.classList.add('finished');
-
-                    // FORCE RESOLVE: Ensure every character is perfectly correct at the end
-                    charNodes.forEach((span, index) => {
-                        span.classList.add('resolved');
-                        span.textContent = originalText[index] === ' ' ? '\u00A0' : originalText[index];
-                    });
-                }
-
-                iteration += 0.5;
-            }, duration);
-        };
     }
-    decryptElements.forEach(decryptEffect);
 
-    // 2. Reading Progress Bar
-    const progressBar = document.getElementById('reading-progress');
-    window.addEventListener('scroll', () => {
-        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrolled = (winScroll / height) * 100;
-        if (progressBar) progressBar.style.width = scrolled + "%";
-    });
-
-    // 3. Mouse Parallax Grid
-    const bgGrid = document.querySelector('.bg-grid');
-    window.addEventListener('mousemove', (e) => {
-        const x = (e.clientX / window.innerWidth) * 20;
-        const y = (e.clientY / window.innerHeight) * 20;
-        if (bgGrid) {
-            bgGrid.style.transform = `translate(${-x}px, ${-y}px)`;
-        }
-    });
-
-    // 4. Clipboard Manager (for code blocks in posts)
+    // --- Animations & Interactivity ---
     function setupCodeBlocks() {
-        document.querySelectorAll('pre').forEach(block => {
-            const button = document.createElement('button');
-            button.className = 'copy-btn';
-            button.innerText = 'COPY';
-            block.style.position = 'relative';
-            block.appendChild(button);
-
-            button.addEventListener('click', () => {
-                const code = block.querySelector('code').innerText;
-                navigator.clipboard.writeText(code).then(() => {
-                    button.innerText = 'COPIED';
-                    button.style.color = 'var(--secondary)';
-                    setTimeout(() => {
-                        button.innerText = 'COPY';
-                        button.style.color = 'var(--text-dim)';
-                    }, 2000);
-                });
-            });
+        const codes = document.querySelectorAll('pre code');
+        codes.forEach(block => {
+            // Prism highlighting is handled by the library
         });
     }
     setupCodeBlocks();
@@ -286,6 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 4. Global Code Utilities
     function initCopyButtons() {
         document.querySelectorAll('pre').forEach(block => {
+            if (block.querySelector('.copy-btn')) return; // Avoid double buttons
             const button = document.createElement('button');
             button.className = 'copy-btn';
             button.innerText = 'COPY';
@@ -338,33 +149,67 @@ document.addEventListener('DOMContentLoaded', () => {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('reveal');
-                observer.unobserve(entry.target);
+                entry.target.classList.add('active');
             }
         });
     }, {
         threshold: 0.1
     });
 
+    function setupAnimations() {
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+    }
 
-    // 6. Terminal Logic
-    const termTrigger = document.getElementById('terminal-trigger');
-    const termWindow = document.getElementById('terminal-window');
-    const termClose = document.getElementById('terminal-close');
-    const termInput = document.getElementById('terminal-input');
-    const termOutput = document.getElementById('terminal-output');
+    // Decrypt Effect
+    function setupDecrypt() {
+        const decrypts = document.querySelectorAll('.decrypt');
+        decrypts.forEach(el => {
+            const target = el.dataset.text;
+            const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()_+";
+            let iteration = 0;
+            let interval = null;
 
-    // Wasm Engine Bridge (Simulated Fallback)
+            el.onmouseover = () => {
+                clearInterval(interval);
+                interval = setInterval(() => {
+                    el.innerText = target.split("")
+                        .map((letter, index) => {
+                            if (index < iteration) return target[index];
+                            return letters[Math.floor(Math.random() * 26)];
+                        })
+                        .join("");
+                    if (iteration >= target.length) clearInterval(interval);
+                    iteration += 1 / 3;
+                }, 30);
+            };
+        });
+    }
+
+    // --- Reading Progress ---
+    const progress = document.getElementById('reading-progress');
+    if (progress) {
+        window.onscroll = () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            progress.style.width = scrolled + "%";
+        };
+    }
+
+    // --- Aegix Security Engine (WASM-Ready Bridge) ---
     const wasmProxy = {
         genkey: () => {
+            // Simulated Rust Logic
             const key = Array.from({
                 length: 32
             }, () => Math.floor(Math.random() * 16).toString(16)).join('');
             return `<span style="color: var(--primary)">[WASM_ENGINE]</span> Generated 256-bit AES Key: 0x${key}`;
         },
         verify: (token) => {
-            if (!token) return 'ERROR: Usage "verify <token>"';
-            const valid = token.startsWith('eyJ') && token.includes('.');
+            // Simulated Rust Logic
+            const valid = token && token.startsWith('eyJ') && token.includes('.');
             return valid ?
                 `<span style="color: var(--primary)">[WASM_ENGINE]</span> JWT Signature Matched. Principal: aegix-admin.` :
                 `<span style="color: var(--primary)">[WASM_ENGINE]</span> [INVALID] Signature Mismatch.`;
@@ -388,6 +233,13 @@ document.addEventListener('DOMContentLoaded', () => {
             return `<span style="color: var(--secondary)">[ERROR] Invalid Policy Syntax. Access Denied.</span>`;
         }
     };
+
+    // --- Aegix Security Console (Terminal) ---
+    const termTrigger = document.querySelector('.terminal-trigger');
+    const termWindow = document.querySelector('.terminal-window');
+    const termClose = document.querySelector('.terminal-close');
+    const termInput = document.getElementById('term-input');
+    const termOutput = document.getElementById('term-output');
 
     if (termTrigger) {
         termTrigger.addEventListener('click', () => {
@@ -419,103 +271,30 @@ document.addEventListener('DOMContentLoaded', () => {
         line.innerHTML = `<span class="prompt">></span> ${cmd}`;
         termOutput.appendChild(line);
 
-        const response = document.createElement('div');
-        response.style.marginBottom = '0.5rem';
-
-        switch (cmd) {
-            case 'help':
-                response.innerHTML = `
-                    <span style="color: var(--primary)">AVAILABLE COMMANDS:</span><br>
-                    - <span style="color: var(--primary)">LS</span>: List latest entries<br>
-                    - <span style="color: var(--primary)">WHOAMI</span>: Session identity<br>
-                    - <span style="color: var(--primary)">GENKEY</span>: [WASM] Generate AES-256 Key<br>
-                    - <span style="color: var(--primary)">VERIFY &lt;token&gt;</span>: [WASM] Validate JWT<br>
-                    - <span style="color: var(--primary)">ENCRYPT &lt;msg&gt;</span>: [WASM] XOR Encryption<br>
-                    - <span style="color: var(--secondary)">CAT SECRET.TXT</span>: Access classified data
-                `;
-                break;
-            case 'whoami':
-                response.innerHTML = 'GUEST_USER // SESSION: AEGIX_PERIMETER_SECURE';
-                break;
-            case 'ls':
-                response.innerHTML = allPosts.map(p => `[${p.date}] ${p.title}`).join('<br>');
-                break;
-            case 'genkey':
-                response.innerHTML = wasmProxy.genkey();
-                break;
-            case 'clear':
-                termOutput.innerHTML = '';
-                return;
-            case 'cat secret.txt':
-                response.innerHTML = `
-                    <span style="color: var(--secondary)">[CLASSIFIED] DECRYPTION SUCCESSFUL:</span><br>
-                    Aegix mission: Secure the code, empower the dev. 
-                    Established 2024. Mesh-scale security reached 2026.
-                `;
-                break;
-            default:
-                if (cmd.startsWith('verify ')) {
-                    response.innerHTML = wasmProxy.verify(cmd.split(' ')[1]);
-                } else if (cmd.startsWith('encrypt ')) {
-                    response.innerHTML = wasmProxy.encrypt(cmd.split(' ')[1]);
-                } else if (cmd.startsWith('cat ')) {
-                    response.innerHTML = 'ERROR: Permission Denied. Access restricted to level 4 agents.';
-                } else {
-                    response.innerHTML = `COMMAND NOT FOUND: ${cmd}. TYPE 'HELP' FOR ASSISTANCE.`;
-                }
-                break;
+        let response = '';
+        if (cmd === 'help') {
+            response = 'Available: GENKEY, VERIFY &lt;token&gt;, ENCRYPT &lt;msg&gt;, CLEAR';
+        } else if (cmd === 'clear') {
+            termOutput.innerHTML = '';
+            return;
+        } else if (cmd === 'genkey') {
+            response = wasmProxy.genkey();
+        } else if (cmd.startsWith('verify ')) {
+            response = wasmProxy.verify(cmd.split(' ')[1]);
+        } else if (cmd.startsWith('encrypt ')) {
+            response = wasmProxy.encrypt(cmd.substring(8));
+        } else {
+            response = `<span style="color: var(--secondary)">UNKNOWN_COMMAND: Type 'help' for available security protocols.</span>`;
         }
 
-        termOutput.appendChild(response);
+        const resLine = document.createElement('div');
+        resLine.innerHTML = response;
+        termOutput.appendChild(resLine);
         termOutput.scrollTop = termOutput.scrollHeight;
     }
 
-    // Draggable Logic
-    let isDragging = false;
-    let currentX;
-    let currentY;
-    let initialX;
-    let initialY;
-    let xOffset = 0;
-    let yOffset = 0;
-
-    const termHeader = document.getElementById('terminal-header');
-
-    if (termHeader) {
-        termHeader.addEventListener('mousedown', dragStart);
-        document.addEventListener('mousemove', drag);
-        document.addEventListener('mouseup', dragEnd);
-    }
-
-    function dragStart(e) {
-        initialX = e.clientX - xOffset;
-        initialY = e.clientY - yOffset;
-        if (e.target === termHeader || termHeader.contains(e.target)) {
-            isDragging = true;
-        }
-    }
-
-    function drag(e) {
-        if (isDragging) {
-            e.preventDefault();
-            currentX = e.clientX - initialX;
-            currentY = e.clientY - initialY;
-            xOffset = currentX;
-            yOffset = currentY;
-            setTranslate(currentX, currentY, termWindow);
-        }
-    }
-
-    function setTranslate(xPos, yPos, el) {
-        el.style.transform = `translate3d(${xPos}px, ${yPos}px, 0)`;
-    }
-
-    function dragEnd() {
-        initialX = currentX;
-        initialY = currentY;
-        isDragging = false;
-    }
-
-    // Initial load
+    // Initialize everything
     init();
+    setupAnimations();
+    setupDecrypt();
 });
