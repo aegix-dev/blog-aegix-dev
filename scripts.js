@@ -39,25 +39,27 @@ document.addEventListener('DOMContentLoaded', () => {
             noResults.style.display = 'none';
             grid.style.display = 'grid';
 
-            filtered.forEach(post => {
+            filtered.forEach((post, index) => {
                 const card = document.createElement('article');
-                card.className = 'post-card reveal';
+                card.className = 'card reveal';
+                card.style.animationDelay = `${index * 0.1}s`;
                 card.innerHTML = `
-                    <div class="post-card-image">
-                        <img src="${post.image}" alt="${post.title}">
-                        <div class="post-card-tag">${post.tag}</div>
+                    <div class="card-image">
+                        <img src="${post.image}" alt="${post.title}" loading="lazy">
+                        <div class="card-tag">${post.tag}</div>
                     </div>
-                    <div class="post-card-content">
-                        <div class="post-card-meta">
+                    <div class="card-content">
+                        <div class="card-footer" style="margin-bottom: 1rem; border: none; padding: 0;">
                             <span>${post.date}</span>
                             <span>${post.readTime}</span>
                         </div>
                         <h3 class="post-card-title">${post.title}</h3>
-                        <p class="post-card-excerpt">${post.excerpt}</p>
-                        <a href="${post.url}" class="read-more">Read Full Insight →</a>
+                        <p>${post.excerpt}</p>
+                        <a href="${post.url}" class="read-more" style="color: var(--primary); font-weight: 700; text-decoration: none;">Read Full Insight →</a>
                     </div>
                 `;
                 grid.appendChild(card);
+                if (observer) observer.observe(card);
             });
         }
     }
