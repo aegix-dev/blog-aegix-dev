@@ -5,7 +5,7 @@
     <link>https://blog.aegix.dev</link>
     <description>Insights, research, and guides on modern application security, zero-trust architectures, and developer productivity.</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 04 May 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 06 May 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://blog.aegix.dev/rss.xml" rel="self" type="application/rss+xml" />
     
     <image>
@@ -13,6 +13,16 @@
         <title>Aegix Security Blog</title>
         <link>https://blog.aegix.dev</link>
     </image>
+
+    <item>
+        <title>QUIC: The Protocol That Rewrote the Internet</title>
+        <link>https://blog.aegix.dev/posts/quic-protocol.html</link>
+        <guid isPermaLink="true">https://blog.aegix.dev/posts/quic-protocol.html</guid>
+        <pubDate>Wed, 06 May 2026 00:00:00 +0000</pubDate>
+        <category>Architecture</category>
+        <description><![CDATA[Explore how the QUIC protocol integrates TLS 1.3 to eliminate latency and harden cloud-native networking.]]></description>
+        <media:content url="https://blog.aegix.dev/assets/quic_protocol_hero.png" medium="image" />
+    </item>
 
     <item>
         <title>The Black Box: Confidential Computing in the Cloud</title>

@@ -107,5 +107,15 @@
         "readTime": "13 min read",
         "image": "assets/confidential_computing_hero.png",
         "url": "posts/confidential-computing.html"
+    },
+    {
+        "id": "quic-protocol",
+        "title": "QUIC: The Protocol That Rewrote the Internet",
+        "excerpt": "Explore how the QUIC protocol integrates TLS 1.3 to eliminate latency and harden cloud-native networking.",
+        "tag": "Architecture",
+        "date": "May 6, 2026",
+        "readTime": "11 min read",
+        "image": "assets/quic_protocol_hero.png",
+        "url": "posts/quic-protocol.html"
     }
 ]
